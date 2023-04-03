@@ -1,0 +1,27 @@
+const express = require("express");
+const app = express();
+const chalk = require("chalk");
+const { handleError } = require("./utils/errorHandler");
+const router = require("./router/router");
+const cors = require("./middlewares/cors");
+const connectToDb = require("./DB/dbService");
+const config = require("config");
+
+app.use(cors);
+app.use(express.json());
+app.use(express.text());
+app.use(router);
+
+app.use((err, req, res, next) => {
+  handleError(res, 500, err.message);
+});
+
+app.get("/", (req, res) => {
+  res.send("in guy app");
+});
+
+const PORT = config.get("PORT");
+app.listen(PORT, () => {
+  console.log(chalk.blueBright(`listening on: http://localhost:${PORT}`));
+  connectToDb();
+});
