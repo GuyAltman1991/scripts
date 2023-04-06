@@ -21,11 +21,13 @@ const Footer = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
+        position: "sticky",
+        bottom: 0,
       }}
     >
       <BottomNavigation
         showLabels
-        sx={{ width: 500 }}
+        sx={{ width: "100%", backgroundColor: "#13678A" }}
         value={value}
         onChange={handleChange}
       >

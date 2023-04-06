@@ -11,6 +11,8 @@ const AppNavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#024059" }}>
         <Toolbar>
+          {/* <img src="../../../../public/assets/images/SCRIPTS.png" alt="logo" /> */}
+
           <NavItem label="LOGO" to={ROUTES.ROOT}></NavItem>
           <NavItem label="about" to={ROUTES.ABOUT} />
           <NavItem label="all scripts" to={ROUTES.SCRIPTS} />
