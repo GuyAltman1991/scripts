@@ -16,4 +16,6 @@ const CardSchema = new mongoose.Schema({
   language: String,
 });
 
-module.exports = CardSchema;
+const Card = mongoose.model("card", CardSchema);
+
+module.exports = Card;
