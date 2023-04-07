@@ -8,6 +8,7 @@ const {
   updateCard,
   likeCard,
 } = require("../models/cardsDataAccessService");
+const validateCard = require("../validations/cardValidationService");
 
 const router = express.Router();
 
@@ -35,6 +36,11 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     let card = req.body;
+
+    const { error } = validateCard(card);
+    if (error)
+      return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
+
     card = await createCard(card);
     return res.send(card);
   } catch (error) {

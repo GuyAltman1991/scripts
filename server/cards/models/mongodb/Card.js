@@ -7,7 +7,10 @@ const CardSchema = new mongoose.Schema({
   title: DEFAULT_VALIDATION,
   genre: DEFAULT_VALIDATION,
   lentgth: DEFAULT_VALIDATION,
-  synopsis: String,
+  synopsis: {
+    type: String,
+    require: true,
+  },
   script_treatment: String,
   createdAt: {
     type: Date,
