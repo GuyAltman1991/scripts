@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardMedia,
-  Container,
-  ImageList,
-  ImageListItem,
-} from "@mui/material";
+import { Card, CardMedia, Container } from "@mui/material";
 import Cards from "../cards/Cards";
 import cards from "../cards/cardsData";
 
@@ -35,7 +29,10 @@ const HomePage = () => {
               }}
             >
               {" "}
-              Lets Write A
+              <span style={{ fontFamily: "caveat", fontSize: 20 }}>
+                {" "}
+                Lets Write A{" "}
+              </span>
             </div>
           </div>
         </Card>
