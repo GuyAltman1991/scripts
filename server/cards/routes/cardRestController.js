@@ -33,6 +33,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/my-cards", async (req, res) => {
+  try {
+    const { _id, isBusiness } = req.user;
+
+    if (!isBusiness)
+      return handleError(res, 403, "Authentication Error: Unauthorize user");
+
+    const card = await getMyCards(_id);
+
+    return res.send(card);
+  } catch (error) {
+    return handleError(res, error.status || 500, error.message);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     let card = req.body;

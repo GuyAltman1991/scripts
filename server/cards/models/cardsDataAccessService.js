@@ -24,6 +24,19 @@ const getCard = async (cardId) => {
   }
 };
 
+const getMyCards = async (userId) => {
+  if (DB === "MONGODB") {
+    try {
+      const cards = await Card.find({ user_id: userId });
+      if (!cards)
+        throw new Error("could not find any information in the database");
+      return Promise.resolve(cards);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+};
+
 const createCard = async (normlizeCard) => {
   if (DB === "MONGODB") {
     try {
@@ -73,6 +86,7 @@ const likeCard = async (cardId, userId) => {
 
 exports.getCards = getCards;
 exports.getCard = getCard;
+exports.getMyCards = getMyCards;
 exports.createCard = createCard;
 exports.updateCard = updateCard;
 exports.deleteCard = deleteCard;

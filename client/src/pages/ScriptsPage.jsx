@@ -5,23 +5,13 @@ import Cards from "../cards/Cards";
 import { getCards } from "../cards/service/cardApiService";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
+import useCards from "../cards/hooks/useCards";
 
 const ScriptsPage = () => {
-  const [cards, setCards] = useState();
-  const [error, setError] = useState(null);
-  const [isPending, setPending] = useState(false);
+  const { isLoading, error, cards, handleGetCards } = useCards();
 
   useEffect(() => {
-    setPending(true);
-    getCards()
-      .then((data) => {
-        setPending(false);
-        setCards(data);
-      })
-      .catch((error) => {
-        setPending(false);
-        setError(error);
-      });
+    handleGetCards();
   }, []);
 
   return (
@@ -32,7 +22,7 @@ const ScriptsPage = () => {
           ALL THE SCRIPTS
         </Typography>
 
-        {isPending && <Spinner />}
+        {isLoading && <Spinner />}
         {error && <Error errorMessage={error} />}
         {cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
