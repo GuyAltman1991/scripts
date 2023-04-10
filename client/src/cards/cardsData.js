@@ -1,4 +1,4 @@
-const cards = [
+const initialDataCards = [
   {
     _id: 1,
     title: "The one and only",
@@ -31,4 +31,4 @@ const cards = [
   },
 ];
 
-export default cards;
+export default initialDataCards;

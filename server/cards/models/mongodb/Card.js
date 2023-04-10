@@ -6,7 +6,7 @@ const CardSchema = new mongoose.Schema({
   publisherDetails: PublisherDetailsSchema,
   title: DEFAULT_VALIDATION,
   genre: DEFAULT_VALIDATION,
-  lentgth: DEFAULT_VALIDATION,
+  length: DEFAULT_VALIDATION,
   synopsis: {
     type: String,
     require: true,

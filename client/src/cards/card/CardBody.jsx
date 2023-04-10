@@ -12,7 +12,10 @@ const CardBody = ({ card }) => {
           {card.genre} - {card.length}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Publisher: {card.publisher}
+          Publisher:{" "}
+          {card.publisherDetails.firstName +
+            " " +
+            card.publisherDetails.lastName}
         </Typography>
         <Typography variant="body2">
           <Typography variant="span" sx={{ fontSize: 15, fontWeight: "bold" }}>
