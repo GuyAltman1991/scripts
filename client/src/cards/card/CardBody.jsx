@@ -1,21 +1,31 @@
-import { CardContent, Typography } from "@mui/material";
+import { CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
 
 const CardBody = ({ card }) => {
   return (
     <>
       <CardContent>
+        {" "}
+        <Typography
+          variant="span"
+          sx={{ mb: 1.5, display: "flex", justifyContent: "left" }}
+          color="text.secondary"
+        >
+          <CardMedia
+            sx={{ mr: 2, mb: 0.5, height: 35, width: 35, borderRadius: 4 }}
+            image={card.publisherDetails.image}
+          >
+            {" "}
+          </CardMedia>
+          {card.publisherDetails.firstName +
+            " " +
+            card.publisherDetails.lastName}{" "}
+        </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {card.title}
         </Typography>
         <Typography variant="h5" component="div">
           {card.genre} - {card.length}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Publisher:{" "}
-          {card.publisherDetails.firstName +
-            " " +
-            card.publisherDetails.lastName}
         </Typography>
         <Typography variant="body2">
           <Typography variant="span" sx={{ fontSize: 15, fontWeight: "bold" }}>

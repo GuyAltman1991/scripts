@@ -7,7 +7,11 @@ const PublisherDetailsSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+  },
+  image: {
+    type: String,
+    default:
+      "https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249__340.png",
   },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,

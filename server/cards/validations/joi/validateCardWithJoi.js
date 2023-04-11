@@ -19,6 +19,7 @@ const validateCardWithJoi = (card) => {
           )
           .rule({ message: "mail mast be a valid mail" })
           .required(),
+        image: Joi.string().allow(""),
         user_id: Joi.string().allow(""),
       })
       .required(),

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardMedia, Container } from "@mui/material";
 import Cards from "../cards/Cards";
 import cards from "../cards/cardsData";
+import useCards from "../cards/hooks/useCards";
+import Error from "../components/Error";
+import Spinner from "../components/Spinner";
 
 const HomePage = () => {
+  const { isLoading, error, cards, handleGetCards } = useCards();
+
+  useEffect(() => {
+    handleGetCards();
+  }, []);
   return (
     <>
       <Container>
@@ -36,7 +44,12 @@ const HomePage = () => {
             </div>
           </div>
         </Card>
-        <Cards cards={cards} />
+        {isLoading && <Spinner />}
+        {error && <Error errorMessage={error} />}
+        {cards && !cards.length && (
+          <p> there are no cards in the database that match the request</p>
+        )}
+        {cards && !!cards.length && <Cards cards={cards} />}
       </Container>
     </>
   );
