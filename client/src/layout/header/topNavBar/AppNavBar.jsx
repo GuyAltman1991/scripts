@@ -7,6 +7,7 @@ import ROUTES from "../../../routes/routesModel";
 import NavItem from "../../../routes/components/NavItem";
 import { Link } from "@mui/material";
 import NavBarLink from "../../../routes/components/NavBarLink";
+import RightNavBar from "./right-navigation/RightNavBar";
 
 const AppNavBar = () => {
   return (
@@ -29,8 +30,8 @@ const AppNavBar = () => {
             component="div"
             sx={{ flexGrow: 1 }}
           ></Typography>
-          <NavItem label="signup" to={ROUTES.SIGNUP} />
-          <NavItem label="login" to={ROUTES.LOGIN} />
+
+          <RightNavBar />
         </Toolbar>
       </AppBar>
     </Box>
