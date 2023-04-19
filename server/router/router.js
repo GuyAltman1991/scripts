@@ -1,9 +1,11 @@
 const express = require("express");
-const { handleError } = require("../utils/errorHandler");
 const router = express.Router();
+const { handleError } = require("../utils/errorHandler");
 const cardRestController = require("../cards/routes/cardRestController");
+const usersRestController = require("../users/routes/usersRestController");
 
 router.use("/cards", cardRestController);
+router.use("/users", usersRestController);
 
 router.use((req, res) => handleError(res, 404, "Page not found!"));
 
