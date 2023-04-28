@@ -9,6 +9,7 @@ import ScriptsPage from "../pages/ScriptsPage";
 import FavoritesPage from "../pages/FavoritesPage";
 import WorthReadingPage from "../pages/WorthReadingPage";
 import MyConnectionsPage from "../pages/MyConnectionsPage";
+import MyScriptsPage from "../pages/MyScriptsPage";
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
       <Route path={ROUTES.FAVORITES} element={<FavoritesPage />} />
       <Route path={ROUTES.WORTH_READING} element={<WorthReadingPage />} />
       <Route path={ROUTES.MY_CONNECTIONS} element={<MyConnectionsPage />} />
+      <Route path={ROUTES.MY_SCRIPTS} element={<MyScriptsPage />} />
     </Routes>
   );
 };

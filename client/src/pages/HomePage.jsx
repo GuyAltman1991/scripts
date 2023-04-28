@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Card, CardMedia, Container } from "@mui/material";
 import Cards from "../cards/Cards";
-import cards from "../cards/cardsData";
+import cards from "../cards/cardsInitialData";
 import useCards from "../cards/hooks/useCards";
 import Error from "../components/Error";
 import Spinner from "../components/Spinner";

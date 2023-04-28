@@ -7,6 +7,7 @@ const ROUTES = {
   FAVORITES: "/favotires",
   WORTH_READING: "/worth_reading",
   MY_CONNECTIONS: "/my_connections",
+  MY_SCRIPTS: "/my_scripts",
 };
 
 export default ROUTES;

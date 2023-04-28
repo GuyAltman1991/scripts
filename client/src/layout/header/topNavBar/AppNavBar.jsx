@@ -24,6 +24,7 @@ const AppNavBar = () => {
           </NavBarLink>
 
           <NavItem label="about" to={ROUTES.ABOUT} />
+          <NavItem label="my scripts" to={ROUTES.MY_SCRIPTS} />
           <NavItem label="all scripts" to={ROUTES.SCRIPTS} />
           <Typography
             variant="h6"
