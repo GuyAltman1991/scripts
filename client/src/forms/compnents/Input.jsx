@@ -38,7 +38,7 @@ Input.propTypes = {
   name: string.isRequired,
   required: bool.isRequired,
   type: string.isRequired,
-  error: string,
+  error: object,
   handleChange: func.isRequired,
   variant: string,
   data: object,
