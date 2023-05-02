@@ -5,9 +5,10 @@ import Logged from "./Logged";
 import { useTheme } from "../../../../providers/ThemeProvider";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { useUser } from "../../../../users/providers/UserProvider";
 
 const RightNavBar = () => {
-  const user = false;
+  const { user } = useUser();
   const { isDark, toggleDarkMode } = useTheme();
 
   return (

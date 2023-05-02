@@ -20,7 +20,7 @@ const LoginPage = () => {
     handleLogin
   );
 
-  // if (user) return <Navigate replace to={ROUTES.SCRIPTS} />;
+  if (user) return <Navigate replace to={ROUTES.SCRIPTS} />;
 
   return (
     <Container

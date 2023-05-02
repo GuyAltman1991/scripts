@@ -11,7 +11,7 @@ const Input = ({
   lable,
   required,
   error,
-  handleChange,
+  onChange,
   ...rest
 }) => {
   return (
@@ -22,11 +22,11 @@ const Input = ({
         type={type}
         id={name}
         name={name}
-        value={data[name] ? data[name] : " "}
+        value={data[name] ? data[name] : ""}
         required={required}
         helperText={error}
         error={Boolean(error)}
-        onChange={handleChange}
+        onChange={onChange}
         fullWidth
         autoComplete="off"
       />
@@ -38,8 +38,8 @@ Input.propTypes = {
   name: string.isRequired,
   required: bool.isRequired,
   type: string.isRequired,
-  error: object,
-  handleChange: func.isRequired,
+  error: string,
+  onChange: func,
   variant: string,
   data: object,
 };

@@ -36,7 +36,7 @@ FormButton.propTypes = {
   node: node.isRequired,
 };
 
-FormButton.defaulrProps = {
+FormButton.defaultProps = {
   variant: "contained",
   component: "button",
   size: "medium",
