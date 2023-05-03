@@ -8,10 +8,12 @@ import SpokeIcon from "@mui/icons-material/Spoke";
 import { Box } from "@mui/material";
 import ROUTES from "../../routes/routesModel";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../users/providers/UserProvider";
 
 const Footer = () => {
   const [value, setValue] = useState("recents");
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -25,32 +27,34 @@ const Footer = () => {
         bottom: 0,
       }}
     >
-      <BottomNavigation
-        showLabels
-        sx={{ width: "100%", backgroundColor: "#13678A" }}
-        value={value}
-        onChange={handleChange}
-      >
-        <BottomNavigationAction
-          label="My Favorits"
-          value="my favorits"
-          icon={<FavoriteIcon />}
-          onClick={() => navigate(ROUTES.FAVORITES)}
-        />
+      {user && (
+        <BottomNavigation
+          showLabels
+          sx={{ width: "100%", backgroundColor: "#13678A" }}
+          value={value}
+          onChange={handleChange}
+        >
+          <BottomNavigationAction
+            label="My Favorits"
+            value="my favorits"
+            icon={<FavoriteIcon />}
+            onClick={() => navigate(ROUTES.FAVORITES)}
+          />
 
-        <BottomNavigationAction
-          label="worth reading"
-          value="worth reading"
-          icon={<FolderIcon />}
-          onClick={() => navigate(ROUTES.WORTH_READING)}
-        />
-        <BottomNavigationAction
-          label="My Connections"
-          value="my connections"
-          icon={<SpokeIcon />}
-          onClick={() => navigate(ROUTES.MY_CONNECTIONS)}
-        />
-      </BottomNavigation>
+          <BottomNavigationAction
+            label="worth reading"
+            value="worth reading"
+            icon={<FolderIcon />}
+            onClick={() => navigate(ROUTES.WORTH_READING)}
+          />
+          <BottomNavigationAction
+            label="My Connections"
+            value="my connections"
+            icon={<SpokeIcon />}
+            onClick={() => navigate(ROUTES.MY_CONNECTIONS)}
+          />
+        </BottomNavigation>
+      )}
     </Box>
   );
 };

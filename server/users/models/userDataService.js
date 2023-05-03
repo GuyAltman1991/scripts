@@ -1,6 +1,8 @@
 const normlizeUser = require("../helpers/normlizeUser");
 const { pick } = require("lodash");
 const User = require("./mongodb/User");
+const { comparePassword } = require("../helpers/bcrypt");
+// const { generateAuthToken } = require("../../auth/providers/jwt");
 
 const registerUser = async (normalizeUser) => {
   try {
@@ -9,6 +11,22 @@ const registerUser = async (normalizeUser) => {
     user = pick(user, ["name", "email", "_id"]);
     return Promise.resolve(user);
   } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+const loginUser = async ({ email, password }) => {
+  try {
+    const user = await User.findOne({ email });
+    if (!user) throw new Error("Invalid email or password");
+
+    const ValidPassword = comparePassword(password, user.password);
+    if (!ValidPassword) throw new Error("Invalid email or password");
+
+    const token = generateAuthToken(user);
+    return Promise.resolve(token);
+  } catch (error) {
+    error.status = 400;
     return Promise.reject(error);
   }
 };
@@ -62,6 +80,7 @@ const deleteUser = async (userId) => {
 };
 
 exports.registerUser = registerUser;
+exports.loginUser = loginUser;
 exports.getUsers = getUsers;
 exports.getUser = getUser;
 exports.updateUser = updateUser;
