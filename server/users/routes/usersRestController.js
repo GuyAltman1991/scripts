@@ -10,6 +10,7 @@ const {
 } = require("../models/userDataService");
 const { handleError } = require("../../utils/errorHandler");
 const loginValidation = require("../validation/loginValidation");
+const auth = require("../../auth/authService");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -38,8 +39,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
+    const { isAdmin } = req.user;
+    if (!isAdmin)
+      return handleError(
+        res,
+        403,
+        "Authorization error: you must be an admin to get all the users"
+      );
     const users = await getUsers();
     return res.send(users);
   } catch (error) {
@@ -47,9 +55,17 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
+    const { _id, isAdmin } = req.user;
     let userId = req.params.id;
+
+    if (_id !== userId && !isAdmin)
+      return handleError(
+        res,
+        403,
+        "Authorization error: you must be an admin to get the user"
+      );
     const user = await getUser(userId);
     return res.send(user);
   } catch (error) {
