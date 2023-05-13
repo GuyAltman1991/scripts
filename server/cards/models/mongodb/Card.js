@@ -16,7 +16,11 @@ const CardSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  likes: [String],
   language: String,
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
 });
 
 const Card = mongoose.model("card", CardSchema);

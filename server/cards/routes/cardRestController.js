@@ -1,5 +1,7 @@
 const express = require("express");
 const { handleError } = require("../../utils/errorHandler");
+const normalizeCard = require("../helpers/normlizeCard");
+
 const {
   getCards,
   createCard,
@@ -9,6 +11,9 @@ const {
   likeCard,
 } = require("../models/cardsDataAccessService");
 const validateCard = require("../validations/cardValidationService");
+const auth = require("../../auth/authService");
+const Card = require("../models/mongodb/Card");
+const normlizeCard = require("../helpers/normlizeCard");
 
 const router = express.Router();
 
@@ -48,14 +53,18 @@ router.get("/my-cards", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     let card = req.body;
+    const user = req.user;
+
+    if (!user.isBusiness)
+      return "Only a business user can post. please register as a business user";
 
     const { error } = validateCard(card);
     if (error)
       return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
-
+    card = await normlizeCard(card, user._id);
     card = await createCard(card);
     return res.send(card);
   } catch (error) {
@@ -75,10 +84,18 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   try {
-    const id = req.params.id;
-    const card = await updateCard(id, req.body);
+    let card = req.body;
+    const user = req.user;
+    const cardData = await Card.findOne({ _id: id });
+    console.log(cardData);
+    if (user._id != cardData.user_id) {
+      const message =
+        "Authorization Error: Only the user who created the card can update its details";
+      return handleError(res, 403, message);
+    }
+    card = await updateCard(id, req.body);
     res.send(card);
   } catch (error) {
     const { status } = error;
@@ -86,11 +103,11 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", auth, async (req, res) => {
   try {
-    const id = req.params.id;
-    const userId = "12345";
-    const card = await likeCard(id, userId);
+    const cardId = req.params.id;
+    const userId = req.user._id;
+    const card = await likeCard(cardId, userId);
     res.send(card);
   } catch (error) {
     const { status } = error;

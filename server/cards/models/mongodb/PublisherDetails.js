@@ -13,9 +13,6 @@ const PublisherDetailsSchema = new mongoose.Schema({
     default:
       "https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249__340.png",
   },
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-  },
 });
 
 module.exports = PublisherDetailsSchema;

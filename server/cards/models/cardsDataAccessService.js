@@ -11,6 +11,7 @@ const getCards = async () => {
       return Promise.reject(error);
     }
   }
+  return Promise.resolve("not in mongodb");
 };
 
 const getCard = async (cardId) => {
@@ -22,6 +23,7 @@ const getCard = async (cardId) => {
       return Promise.reject(error);
     }
   }
+  return Promise.resolve("not in mongodb");
 };
 
 const getMyCards = async (userId) => {
@@ -35,6 +37,7 @@ const getMyCards = async (userId) => {
       return Promise.reject(error);
     }
   }
+  return Promise.resolve("not in mongodb");
 };
 
 const createCard = async (normlizeCard) => {
@@ -49,17 +52,20 @@ const createCard = async (normlizeCard) => {
       return Promise.reject(error);
     }
   }
+  return Promise.resolve("not in mongodb");
 };
 
 const updateCard = async (id, rawCard) => {
   if (DB === "MONGODB") {
     try {
-      const card = { ...rawCard };
+      let card = { ...rawCard };
       card = await Card.findByIdAndUpdate(id, card);
+      Promise.resolve(card);
     } catch (error) {
       return Promise.reject(error);
     }
   }
+  return Promise.resolve("not in mongodb");
 };
 
 const deleteCard = async (id) => {
@@ -71,17 +77,34 @@ const deleteCard = async (id) => {
       Promise.reject(error);
     }
   }
+  return Promise.resolve("not in mongodb");
 };
 
 const likeCard = async (cardId, userId) => {
-  if ((DB = "MONGODB")) {
+  if (DB === "MONGODB") {
     try {
-      const card = Card.findById(cardId);
+      let card = await Card.findById(cardId);
+      if (!card)
+        throw new Error(
+          "could not change card like becouse a card with this ID cannot be found in the database!"
+        );
+      const cardLikes = card.likes.find((id) => id === userId);
+
+      if (!cardLikes) {
+        card.likes.push(userId);
+        card = await card.save();
+        return Promise.resolve(card);
+      }
+      const cardFiltered = card.likes.filter((id) => id !== userId);
+      card.likes = cardFiltered;
+      card = await card.save();
       return Promise.resolve(card);
     } catch (error) {
-      Promise.reject(error);
+      error.status = 400;
+      return handleBadRequest("mongoose", error);
     }
   }
+  return Promise.resolve("not in mongodb");
 };
 
 exports.getCards = getCards;
