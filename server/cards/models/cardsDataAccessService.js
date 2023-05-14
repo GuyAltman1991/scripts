@@ -60,7 +60,7 @@ const updateCard = async (id, rawCard) => {
     try {
       let card = { ...rawCard };
       card = await Card.findByIdAndUpdate(id, card);
-      Promise.resolve(card);
+      return Promise.resolve(card);
     } catch (error) {
       return Promise.reject(error);
     }
@@ -68,13 +68,20 @@ const updateCard = async (id, rawCard) => {
   return Promise.resolve("not in mongodb");
 };
 
-const deleteCard = async (id) => {
+const deleteCard = async (cardId, user) => {
   if (DB === "MONGODB") {
     try {
-      const card = Card.findByIdAndRemove(id);
-      Promise.resolve(card);
+      let card = await Card.findById(cardId);
+
+      if (!card) throw new Error("card was not found");
+      if (!user.isAdmin && user._id !== card.user_id)
+        throw new Error(
+          "only Admin or the user who create this card can delete it"
+        );
+      card = await Card.findByIdAndDelete(cardId);
+      return Promise.resolve(card);
     } catch (error) {
-      Promise.reject(error);
+      return Promise.reject(error);
     }
   }
   return Promise.resolve("not in mongodb");

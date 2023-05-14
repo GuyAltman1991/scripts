@@ -73,11 +73,13 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
-    const id = req.params.id;
-    const card = await deleteCard(id);
-    res.send(card);
+    const cardId = req.params.id;
+    const user = req.user;
+
+    const card = await deleteCard(cardId, user);
+    return res.send(card);
   } catch (error) {
     const { status } = error;
     handleError(res, status || 500, error.message);
@@ -89,14 +91,13 @@ router.put("/:id", auth, async (req, res) => {
     let card = req.body;
     const user = req.user;
     const cardData = await Card.findOne({ _id: id });
-    console.log(cardData);
     if (user._id != cardData.user_id) {
       const message =
         "Authorization Error: Only the user who created the card can update its details";
       return handleError(res, 403, message);
     }
     card = await updateCard(id, req.body);
-    res.send(card);
+    return res.send(card);
   } catch (error) {
     const { status } = error;
     handleError(res, status || 500, error.message);
@@ -108,7 +109,7 @@ router.patch("/:id", auth, async (req, res) => {
     const cardId = req.params.id;
     const userId = req.user._id;
     const card = await likeCard(cardId, userId);
-    res.send(card);
+    return res.send(card);
   } catch (error) {
     const { status } = error;
     handleError(res, status || 500, error.message);
