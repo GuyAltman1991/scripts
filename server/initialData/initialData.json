@@ -1,0 +1,71 @@
+{
+  "cards": [
+    {
+      "publisherDetails": {
+        "firstName": "first",
+        "lastName": "first",
+        "email": "firstcard@gmail.com",
+        "image": "https://cdn.pixabay.com/photo/2017/07/18/23/23/user-2517433__340.png"
+      },
+      "title": "first card",
+      "genre": "drama",
+      "length": "long",
+      "language": "english",
+      "synopsis": "this is the synopsis of the first script"
+    },
+    {
+      "publisherDetails": {
+        "firstName": "second",
+        "lastName": "second",
+        "email": "secondcard@gmail.com",
+        "image": "https://cdn.pixabay.com/photo/2020/07/21/17/48/love-5426977_640.jpg"
+      },
+      "title": "second card",
+      "genre": "comedy",
+      "length": "long",
+      "language": "english",
+      "synopsis": "this is the synopsis of the second script"
+    }
+  ],
+
+  "users": [
+    {
+      "name": {
+        "firstName": "firstuser",
+        "lastName": "firstuser"
+      },
+      "email": "firstuser@gmail.com",
+      "phone": "0547081688",
+      "password": "Aa1234!",
+      "imageUrl": "https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565__340.jpg",
+      "address": {
+        "state": "ss",
+        "country": "israel",
+        "city": "ramat gan",
+        "street": "pinchas",
+        "houseNumber": "25"
+      },
+      "isAdmin": false,
+      "isBusiness": true
+    },
+    {
+      "name": {
+        "firstName": "seconduser",
+        "lastName": "seconduser"
+      },
+      "email": "seconduser@gmail.com",
+      "phone": "0547081688",
+      "password": "Aa1234!",
+      "imageUrl": "https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565__340.jpg",
+      "address": {
+        "state": "ss",
+        "country": "israel",
+        "city": "ramat gan",
+        "street": "pinchas",
+        "houseNumber": "25"
+      },
+      "isAdmin": false,
+      "isBusiness": true
+    }
+  ]
+}
