@@ -10,6 +10,7 @@ import FavoritesPage from "../pages/FavoritesPage";
 import WorthReadingPage from "../pages/WorthReadingPage";
 import MyConnectionsPage from "../pages/MyConnectionsPage";
 import MyScriptsPage from "../pages/MyScriptsPage";
+import CreateScriptPage from "../pages/CreateScriptPage";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
       <Route path={ROUTES.WORTH_READING} element={<WorthReadingPage />} />
       <Route path={ROUTES.MY_CONNECTIONS} element={<MyConnectionsPage />} />
       <Route path={ROUTES.MY_SCRIPTS} element={<MyScriptsPage />} />
+      <Route path={ROUTES.CREATE_SCRIPT_PAGE} element={<CreateScriptPage />} />
     </Routes>
   );
 };

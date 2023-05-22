@@ -12,6 +12,7 @@ const Input = ({
   required,
   error,
   onChange,
+  select,
   ...rest
 }) => {
   return (
