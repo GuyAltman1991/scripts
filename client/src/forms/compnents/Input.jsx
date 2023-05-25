@@ -1,5 +1,5 @@
 import React from "react";
-import { string, bool, object, func } from "prop-types";
+import { string, bool, object, func, number } from "prop-types";
 import Grid from "@mui/material/Grid";
 import { TextField } from "@mui/material";
 
@@ -12,12 +12,14 @@ const Input = ({
   required,
   error,
   onChange,
-  select,
+  minRows,
   ...rest
 }) => {
   return (
     <Grid item xs={12}>
       <TextField
+        minRows={minRows}
+        multiline={true}
         variant={variant}
         label={lable}
         type={type}
@@ -43,6 +45,7 @@ Input.propTypes = {
   onChange: func,
   variant: string,
   data: object,
+  minRows: number,
 };
 
 Input.defaultProps = {

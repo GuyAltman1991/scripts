@@ -1,20 +1,27 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React from "react";
 
-const SelectOption = ({ lable, options, onChange }) => {
+const SelectOption = ({ variant, lable, options, onChange, name }) => {
+  const [valueChosen, setValue] = React.useState("");
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
-    <FormControl sx={{ width: "100%", mt: 1, mr: 1 }}>
-      <InputLabel>{lable}</InputLabel>
-
+    <FormControl variant="outlined" sx={{ width: "100%", mt: 1, mr: 1 }}>
+      <InputLabel required={true} sx={{ ml: 1 }}>
+        {lable}
+      </InputLabel>
       <Select
-        multiple
-        sx={{ width: "100%", ml: 1, mt: 1, mr: 2 }}
-        value={options}
+        sx={{ width: "100%", ml: 1, mt: 1, mr: 2, textAlign: "left" }}
+        value={valueChosen}
         label={lable}
-        onChange={onChange}
+        onChange={handleChange}
+        name={name}
       >
         {options.map((option) => (
-          <MenuItem value={option}>{option}</MenuItem>
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
