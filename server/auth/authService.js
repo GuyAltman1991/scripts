@@ -10,11 +10,13 @@ const auth = (req, res, next) => {
       const tokenFromClient = req.header("x-auth-token");
       if (!tokenFromClient)
         throw new Error("Authentication Error: Please Login");
+
       const userInfo = verifyToken(tokenFromClient);
       if (!userInfo) throw new Error("Authentication Error: Unauthorized user");
       req.user = userInfo;
       return next();
     } catch (error) {
+      console.log(error);
       return handleError(res, 401, error.message);
     }
   }

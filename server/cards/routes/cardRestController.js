@@ -14,27 +14,36 @@ const validateCard = require("../validations/cardValidationService");
 const auth = require("../../auth/authService");
 const Card = require("../models/mongodb/Card");
 const normlizeCard = require("../helpers/normlizeCard");
+const { getUser, getUsers } = require("../../users/models/userDataService");
+const mergCardWithUser = require("../helpers/mergCardWithUser");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
+    let dataCards;
     const cards = await getCards();
-    res.send(cards);
-  } catch (error) {
-    const { status } = error;
-    handleError(res, status || 500, error.message);
-  }
-});
+    const userData = await getUsers();
+    cards.map(async (card) => {
+      userData.map(async (user) => {
+        const filterUser = {
+          name: {
+            firstName: user.name.firstName,
+            lastName: user.name.lastName,
+          },
+          imageUrl: user.imageUrl,
+          email: user.email,
+        };
+        const data = await mergCardWithUser(card, filterUser);
 
-router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const card = await getCard(id);
-    res.send(card);
+        dataCards = data;
+      });
+      console.log(dataCards);
+    });
+    return res.send(dataCards);
   } catch (error) {
     const { status } = error;
-    handleError(res, status || 500, error.message);
+    return handleError(res, status || 500, error.message);
   }
 });
 
@@ -66,7 +75,20 @@ router.post("/", auth, async (req, res) => {
       return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
     card = await normlizeCard(card, user._id);
     card = await createCard(card);
-    return res.send(card);
+
+    // 1. find user data by userId
+    const userData = await getUser(user._id);
+    //2. return response with card + userData
+    const filterUser = {
+      name: {
+        firstName: userData.name.firstName,
+        lastName: userData.name.lastName,
+      },
+      imageUrl: userData.imageUrl,
+      email: userData.email,
+    };
+    const data = await mergCardWithUser(card, filterUser);
+    return res.send(data);
   } catch (error) {
     const { status } = error;
     handleError(res, status || 500, error.message);

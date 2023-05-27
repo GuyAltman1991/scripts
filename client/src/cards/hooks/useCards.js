@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   changeLikeStatus,
   createCard,
@@ -8,12 +8,20 @@ import {
   getCards,
   getMyCards,
 } from "../service/cardApiService";
+import normlizeScriptCard from "../helpers/normlizeScriptCard";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
+import useAxios from "../../hooks/useAxios";
 
 const useCards = () => {
   const [cards, setCards] = useState(null);
   const [card, setCard] = useState(null);
   const [isLoading, setLoading] = useState(null);
   const [error, setError] = useState(null);
+
+  console.log(cards);
+  const navigate = useNavigate();
+  useAxios();
 
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setLoading(loading);
@@ -26,6 +34,7 @@ const useCards = () => {
     try {
       setLoading(true);
       const cards = await getCards();
+
       requestStatus(false, null, cards);
     } catch (error) {
       requestStatus(false, error, null);
@@ -56,15 +65,19 @@ const useCards = () => {
     }
   };
 
-  const handleCreateCard = async (cardFromClient) => {
+  const handleCreateCard = useCallback(async (cardFromClient) => {
     try {
       setLoading(true);
-      const card = await createCard(cardFromClient);
+      const normlizedCard = normlizeScriptCard(cardFromClient);
+
+      const card = await createCard(normlizedCard);
+
       requestStatus(false, null, null, card);
+      navigate(ROUTES.SCRIPTS);
     } catch (error) {
       requestStatus(false, error, null);
     }
-  };
+  }, []);
 
   const handleUpdateCard = async (cardFromClient) => {
     try {

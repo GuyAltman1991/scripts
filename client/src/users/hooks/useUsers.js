@@ -13,7 +13,6 @@ const useUsers = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();
   useAxios();

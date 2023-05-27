@@ -10,3 +10,12 @@ export const login = async (user) => {
     return Promise.reject(error.message);
   }
 };
+
+export const getUserFromServer = async (userId) => {
+  try {
+    const { data } = await axios.get(`${apiUrl}/users${userId}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};

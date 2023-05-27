@@ -56,10 +56,7 @@ const getUsers = async () => {
 const getUser = async (userId) => {
   if (DB === "MONGODB") {
     try {
-      let user = await User.findById(userId, {
-        password: 0,
-        __v: 0,
-      });
+      let user = await User.findById(userId).select(["-password", "-__v"]);
       if (!user) throw new Error("could not find this user in the database!");
       return Promise.resolve(user);
     } catch (error) {

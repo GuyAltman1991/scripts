@@ -14,6 +14,7 @@ const SelectOption = ({ variant, lable, options, onChange, name }) => {
       <Select
         sx={{ width: "100%", ml: 1, mt: 1, mr: 2, textAlign: "left" }}
         value={valueChosen}
+        // value={data[name] ? data[name] : ""}
         label={lable}
         onChange={handleChange}
         name={name}

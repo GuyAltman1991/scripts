@@ -8,7 +8,8 @@ const validateCardWithJoi = (card) => {
     language: Joi.string().min(2).required(),
     synopsis: Joi.string().min(2).required(),
     script_treatment: Joi.string().min(2).allow(""),
-
+    fullScript: Joi.string().min(2).allow(""),
+    anotherScreenwriter: Joi.string().min(2).allow(""),
     publisherDetails: Joi.object()
       .keys({
         firstName: Joi.string().required(),
@@ -22,7 +23,7 @@ const validateCardWithJoi = (card) => {
         image: Joi.string().allow(""),
         user_id: Joi.string().allow(""),
       })
-      .required(),
+      .allow(""),
   });
   return schema.validate(card);
 };
