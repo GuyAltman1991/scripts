@@ -10,20 +10,6 @@ const validateCardWithJoi = (card) => {
     script_treatment: Joi.string().min(2).allow(""),
     fullScript: Joi.string().min(2).allow(""),
     anotherScreenwriter: Joi.string().min(2).allow(""),
-    publisherDetails: Joi.object()
-      .keys({
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        email: Joi.string()
-          .ruleset.pattern(
-            /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
-          )
-          .rule({ message: "mail mast be a valid mail" })
-          .required(),
-        image: Joi.string().allow(""),
-        user_id: Joi.string().allow(""),
-      })
-      .allow(""),
   });
   return schema.validate(card);
 };

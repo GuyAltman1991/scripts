@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
-const PublisherDetailsSchema = require("./PublisherDetails");
 const { DEFAULT_VALIDATION } = require("../../helpers/mongooseValidator");
 
 const CardSchema = new mongoose.Schema({
-  publisherDetails: PublisherDetailsSchema,
   title: DEFAULT_VALIDATION,
   genre: DEFAULT_VALIDATION,
   length: DEFAULT_VALIDATION,
@@ -12,14 +10,18 @@ const CardSchema = new mongoose.Schema({
     require: true,
   },
   script_treatment: String,
+  fullScript: String,
   createdAt: {
     type: Date,
     default: Date.now,
   },
   likes: [String],
   language: String,
+  anotherScreenwriter: String,
+
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
   },
 });
 

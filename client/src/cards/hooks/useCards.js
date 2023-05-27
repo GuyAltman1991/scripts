@@ -19,7 +19,6 @@ const useCards = () => {
   const [isLoading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
-  console.log(cards);
   const navigate = useNavigate();
   useAxios();
 
@@ -69,9 +68,7 @@ const useCards = () => {
     try {
       setLoading(true);
       const normlizedCard = normlizeScriptCard(cardFromClient);
-
       const card = await createCard(normlizedCard);
-
       requestStatus(false, null, null, card);
       navigate(ROUTES.SCRIPTS);
     } catch (error) {

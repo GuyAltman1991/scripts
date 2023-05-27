@@ -13,13 +13,11 @@ const CardBody = ({ card }) => {
         >
           <CardMedia
             sx={{ mr: 2, mb: 0.5, height: 35, width: 35, borderRadius: 4 }}
-            image={card.publisherDetails.image}
+            image={card.user_id.imageUrl}
           >
             {" "}
           </CardMedia>
-          {card.publisherDetails.firstName +
-            " " +
-            card.publisherDetails.lastName}{" "}
+          {card.user_id.name.firstName + " " + card.user_id.name.lastName}{" "}
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {card.title}

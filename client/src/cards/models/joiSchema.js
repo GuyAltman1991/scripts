@@ -1,4 +1,4 @@
-import Joi, { any } from "joi";
+import Joi from "joi";
 
 const createScriptSchema = {
   title: Joi.string().min(2).max(20).required(),
@@ -9,7 +9,6 @@ const createScriptSchema = {
   anotherScreenwriter: Joi.string().min(2).allow(""),
   script_treatment: Joi.string().min(10).allow(),
   fullScript: Joi.string().min(10).allow(),
-  id: Joi.any().allow(""),
 };
 
 export default createScriptSchema;

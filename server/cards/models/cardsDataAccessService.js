@@ -5,7 +5,10 @@ const DB = process.env.DB || "MONGODB";
 const getCards = async () => {
   if (DB === "MONGODB") {
     try {
-      const cards = await Card.find();
+      const cards = await Card.find().populate(
+        "user_id",
+        "name imageUrl email"
+      );
       return Promise.resolve(cards);
     } catch (error) {
       return Promise.reject(error);
@@ -17,7 +20,10 @@ const getCards = async () => {
 const getCard = async (cardId) => {
   if (DB === "MONGODB") {
     try {
-      const card = await Card.findById(cardId);
+      const card = await Card.findById(cardId).populate(
+        "user_id",
+        "name imageUrl email"
+      );
       return Promise.resolve(card);
     } catch (error) {
       return Promise.reject(error);
