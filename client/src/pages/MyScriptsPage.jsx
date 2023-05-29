@@ -13,6 +13,7 @@ import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
+import useCards from "../cards/hooks/useCards";
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: "absolute",
@@ -37,13 +38,8 @@ const MyScriptsPage = () => {
   const [direction, setDirection] = React.useState("up");
   const [hidden, setHidden] = React.useState(false);
   const navigate = useNavigate();
-  // const handleDirectionChange = (event) => {
-  //   setDirection(event.target.value);
-  // };
+  const { handleGetCards } = useCards();
 
-  // const handleHiddenChange = (event) => {
-  //   setHidden(event.target.checked);
-  // };
   return (
     <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
       <Box sx={{ position: "relative", mt: 0, height: 320 }}>

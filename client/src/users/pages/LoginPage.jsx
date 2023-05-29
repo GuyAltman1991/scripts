@@ -48,9 +48,9 @@ const LoginPage = () => {
           data={value.data}
         />
         <Input
+          type="password"
           lable="password"
           name="password"
-          type="password"
           error={value.errors.password}
           onChange={rest.handleChange}
           data={value.data}

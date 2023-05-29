@@ -77,13 +77,14 @@ const updateCard = async (id, rawCard) => {
 const deleteCard = async (cardId, user) => {
   if (DB === "MONGODB") {
     try {
+      console.log("in data service");
       let card = await Card.findById(cardId);
 
       if (!card) throw new Error("card was not found");
-      if (!user.isAdmin && user._id !== card.user_id)
-        throw new Error(
-          "only Admin or the user who create this card can delete it"
-        );
+      // if (!user.isAdmin && user._id !== card.user_id._id)
+      throw new Error(
+        "only Admin or the user who create this card can delete it"
+      );
       card = await Card.findByIdAndDelete(cardId);
       return Promise.resolve(card);
     } catch (error) {

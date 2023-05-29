@@ -79,6 +79,7 @@ router.delete("/:id", auth, async (req, res) => {
     const cardId = req.params.id;
     const user = req.user;
 
+    console.log("in router delete");
     const card = await deleteCard(cardId, user);
     return res.send(card);
   } catch (error) {

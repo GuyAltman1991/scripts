@@ -13,6 +13,7 @@ const Input = ({
   error,
   onChange,
   minRows,
+  hideValue,
   ...rest
 }) => {
   return (

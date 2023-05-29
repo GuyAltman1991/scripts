@@ -19,13 +19,20 @@ const CardBody = ({ card }) => {
           </CardMedia>
           {card.user_id.name.firstName + " " + card.user_id.name.lastName}{" "}
         </Typography>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography
+          sx={{ mt: -4, fontSize: 14 }}
+          color="text.secondary"
+          gutterBottom
+        >
           {card.title}
         </Typography>
         <Typography variant="h5" component="div">
           {card.genre} - {card.length}
         </Typography>
-        <Typography variant="body2">
+        <Typography
+          variant="body2"
+          sx={{ wordWrap: "break-word", maxHeight: "30px" }}
+        >
           <Typography variant="span" sx={{ fontSize: 15, fontWeight: "bold" }}>
             {" "}
             Synopsis:{" "}
