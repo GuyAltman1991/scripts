@@ -7,7 +7,7 @@ import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useCards from "../cards/hooks/useCards";
 
-const ScriptsPage = () => {
+const ScriptsPage = ({ onDelete }) => {
   const { isLoading, error, cards, handleGetCards, handleDeleteCard } =
     useCards();
 

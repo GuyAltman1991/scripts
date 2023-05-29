@@ -5,10 +5,10 @@ const DB = process.env.DB || "MONGODB";
 const getCards = async () => {
   if (DB === "MONGODB") {
     try {
-      const cards = await Card.find().populate(
-        "user_id",
-        "name imageUrl email"
-      );
+      const cards = await Card.find().populate({
+        path: "user_id",
+        select: "name imageUrl email",
+      });
       return Promise.resolve(cards);
     } catch (error) {
       return Promise.reject(error);
@@ -20,10 +20,10 @@ const getCards = async () => {
 const getCard = async (cardId) => {
   if (DB === "MONGODB") {
     try {
-      const card = await Card.findById(cardId).populate(
-        "user_id",
-        "name imageUrl email"
-      );
+      const card = await Card.findById(cardId).populate({
+        path: "user_id",
+        select: "name imageUrl email",
+      });
       return Promise.resolve(card);
     } catch (error) {
       return Promise.reject(error);
@@ -79,12 +79,13 @@ const deleteCard = async (cardId, user) => {
     try {
       console.log("in data service");
       let card = await Card.findById(cardId);
+      let cardUserId = card.user_id._id.toString();
 
       if (!card) throw new Error("card was not found");
-      // if (!user.isAdmin && user._id !== card.user_id._id)
-      throw new Error(
-        "only Admin or the user who create this card can delete it"
-      );
+      if (!user.isAdmin && user._id !== cardUserId)
+        throw new Error(
+          "only Admin or the user who create this card can delete it"
+        );
       card = await Card.findByIdAndDelete(cardId);
       return Promise.resolve(card);
     } catch (error) {

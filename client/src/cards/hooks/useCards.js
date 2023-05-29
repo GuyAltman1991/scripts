@@ -90,6 +90,7 @@ const useCards = () => {
     try {
       setLoading(true);
       const card = await deleteCard(cardId);
+      console.log(card);
       requestStatus(false, null, null, card);
     } catch (error) {}
     requestStatus(false, error, null);

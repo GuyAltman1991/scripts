@@ -28,11 +28,6 @@ export const CardAction = ({ onDelete, cardId, cardUserId }) => {
     setDialog(false);
   };
 
-  // const handleDeleteCard = async () => {
-  //   handleDialog();
-  //   await onDelete(onDeleteCard);
-  // };
-
   return (
     <>
       <CardActions sx={{ mt: 8 }}>
