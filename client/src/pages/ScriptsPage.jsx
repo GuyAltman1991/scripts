@@ -8,14 +8,14 @@ import Error from "../components/Error";
 import useCards from "../cards/hooks/useCards";
 
 const ScriptsPage = ({ onDelete }) => {
-  const { isLoading, error, cards, handleGetCards, handleDeleteCard } =
-    useCards();
-
+  const { value, handleGetCards, handleDeleteCard } = useCards();
+  const { isLoading, error, cards } = value;
   useEffect(() => {
     handleGetCards();
   }, []);
 
   const onDeleteCard = async (cardId) => {
+    console.log("script" + cardId);
     await handleDeleteCard(cardId);
     await handleGetCards();
   };
@@ -32,9 +32,7 @@ const ScriptsPage = ({ onDelete }) => {
         {cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
         )}
-        {cards && !!cards.length && (
-          <Cards cards={cards} onDelete={onDeleteCard} />
-        )}
+        {cards && !!cards.length && <Cards cards={cards} onDelete={onDelete} />}
       </Container>
     </>
   );

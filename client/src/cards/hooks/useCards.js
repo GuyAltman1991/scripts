@@ -38,10 +38,6 @@ const useCards = () => {
     } catch (error) {
       requestStatus(false, error, null);
     }
-
-    // const value = useMemo(() => {
-    //     return { isLoading, cards, card, error  };
-    //   }, [isLoading, cards, card, error]);
   };
 
   const handleGetCard = async (cardId) => {
@@ -89,6 +85,7 @@ const useCards = () => {
   const handleDeleteCard = async (cardId) => {
     try {
       setLoading(true);
+      await console.log("use" + cardId);
       const card = await deleteCard(cardId);
       console.log(card);
       requestStatus(false, null, null, card);
@@ -106,11 +103,13 @@ const useCards = () => {
       requestStatus(false, error, null);
     }
   };
+
+  const value = useMemo(() => {
+    return { isLoading, cards, card, error };
+  }, [isLoading, cards, card, error]);
+
   return {
-    isLoading,
-    cards,
-    card,
-    error,
+    value,
     handleGetCards,
     handleGetCard,
     handleGetMyCards,

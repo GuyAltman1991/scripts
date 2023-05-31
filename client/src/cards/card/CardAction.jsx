@@ -8,7 +8,7 @@ import { useUser } from "../../users/providers/UserProvider";
 import CardDeleteDialog from "./CardDeleteDialog";
 import useCards from "../hooks/useCards";
 
-export const CardAction = ({ onDelete, cardId, cardUserId }) => {
+export const CardAction = ({ cardId, onDelete }) => {
   const [isDialogOpen, setDialog] = useState(false);
   const { user } = useUser();
 
@@ -18,14 +18,21 @@ export const CardAction = ({ onDelete, cardId, cardUserId }) => {
     handleGetCards();
   }, []);
 
-  const onDeleteCard = async (cardId) => {
-    await handleDeleteCard(cardId);
-    await handleGetCards();
-  };
+  // const onDeleteCard = async (cardId) => {
+  //   console.log("action" + cardId);
+
+  //   await handleDeleteCard(cardId);
+  //   await handleGetCards();
+  // };
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
     setDialog(false);
+  };
+
+  const handleDelete = () => {
+    handleDialog();
+    onDelete(cardId);
   };
 
   return (
@@ -53,20 +60,20 @@ export const CardAction = ({ onDelete, cardId, cardUserId }) => {
         >
           <ShareIcon />
         </IconButton>
-        {user && (user.isAdmin || user._id === cardUserId) && (
-          <IconButton
-            aria-label="delete project"
-            onClick={() => handleDialog("open")}
-          >
-            <DeleteIcon />
-          </IconButton>
-        )}
+        {/* {user && (user.isAdmin || user._id === cardUserId) && ( */}
+        <IconButton
+          aria-label="delete project"
+          onClick={() => handleDialog("open")}
+        >
+          <DeleteIcon />
+        </IconButton>
+        {/* )} */}
       </CardActions>
 
       <CardDeleteDialog
         isDialogOpen={isDialogOpen}
         onChangeDialog={handleDialog}
-        onDelete={onDeleteCard}
+        onDelete={handleDelete}
       />
     </>
   );

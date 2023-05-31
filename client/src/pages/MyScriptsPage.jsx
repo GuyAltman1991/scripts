@@ -5,7 +5,7 @@ import {
   SpeedDialAction,
   SpeedDialIcon,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
 import SaveIcon from "@mui/icons-material/Save";
@@ -14,6 +14,11 @@ import ShareIcon from "@mui/icons-material/Share";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import useCards from "../cards/hooks/useCards";
+import { useUser } from "../users/providers/UserProvider";
+import ROUTES from "../routes/routesModel";
+import Spinner from "../components/Spinner";
+import Error from "../components/Error";
+import Cards from "../cards/Cards";
 
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: "absolute",
@@ -37,11 +42,32 @@ const actions = [
 const MyScriptsPage = () => {
   const [direction, setDirection] = React.useState("up");
   const [hidden, setHidden] = React.useState(false);
+  const { user } = useUser();
   const navigate = useNavigate();
-  const { handleGetCards } = useCards();
+  const { handleGetCards, handleGetMyCards, handleDeleteCard, value } =
+    useCards();
+  const { isLoading, error, cards } = value;
+
+  useEffect(() => {
+    if (!user) return navigate(ROUTES.SCRIPTS);
+    handleGetMyCards();
+  }, [user]);
+
+  const onDeletCard = async (cardId) => {
+    await handleDeleteCard(cardId);
+    await handleGetCards();
+  };
 
   return (
     <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
+      {isLoading && <Spinner />}
+      {error && <Error errorMessage={error} />}
+      {cards && !cards.length && (
+        <p> there are no cards in the database that match the request</p>
+      )}
+      {cards && !!cards.length && (
+        <Cards onDelete={onDeletCard} cards={cards} />
+      )}
       <Box sx={{ position: "relative", mt: 0, height: 320 }}>
         <StyledSpeedDial
           ariaLabel="SpeedDial playground example"

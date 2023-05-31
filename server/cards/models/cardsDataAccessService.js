@@ -77,8 +77,8 @@ const updateCard = async (id, rawCard) => {
 const deleteCard = async (cardId, user) => {
   if (DB === "MONGODB") {
     try {
-      console.log("in data service");
       let card = await Card.findById(cardId);
+      console.log("in data service");
       let cardUserId = card.user_id._id.toString();
 
       if (!card) throw new Error("card was not found");

@@ -7,7 +7,13 @@ import Error from "../components/Error";
 import Spinner from "../components/Spinner";
 
 const HomePage = () => {
-  const { isLoading, error, cards, handleGetCards } = useCards();
+  const { isLoading, handleGetCards, handleDeleteCard, value } = useCards();
+  const { error, cards } = value;
+
+  const onDeletCard = async (cardId) => {
+    await handleDeleteCard(cardId);
+    await handleGetCards();
+  };
 
   useEffect(() => {
     handleGetCards();
@@ -49,7 +55,9 @@ const HomePage = () => {
         {cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
         )}
-        {cards && !!cards.length && <Cards cards={cards} />}
+        {cards && !!cards.length && (
+          <Cards onDelete={onDeletCard} cards={cards} />
+        )}
       </Container>
     </>
   );

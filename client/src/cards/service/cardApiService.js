@@ -58,8 +58,8 @@ export const changeLikeStatus = async (cardId) => {
 
 export const deleteCard = async (cardId) => {
   try {
-    console.log(1);
     const { data } = await axios.delete(`${apiUrl}/cards/${cardId}`);
+    console.log(1);
     return data;
   } catch (error) {
     return Promise.reject(error.message);

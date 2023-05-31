@@ -21,7 +21,7 @@ const Card = ({ card, onDelete }) => {
 };
 
 Card.propTypes = {
-  onDelete: func.isRequired,
+  // onDelete: func.isRequired,
 };
 
 export default Card;
