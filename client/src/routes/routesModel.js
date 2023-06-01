@@ -9,6 +9,7 @@ const ROUTES = {
   MY_CONNECTIONS: "/my_connections",
   MY_SCRIPTS: "/my_scripts",
   CREATE_SCRIPT_PAGE: "/create_script",
+  PROJECT_PAGE: "/project_page",
 };
 
 export default ROUTES;

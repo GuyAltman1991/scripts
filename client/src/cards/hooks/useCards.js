@@ -85,9 +85,7 @@ const useCards = () => {
   const handleDeleteCard = async (cardId) => {
     try {
       setLoading(true);
-      await console.log("use" + cardId);
       const card = await deleteCard(cardId);
-      console.log(card);
       requestStatus(false, null, null, card);
     } catch (error) {}
     requestStatus(false, error, null);

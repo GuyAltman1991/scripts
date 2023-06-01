@@ -8,7 +8,7 @@ import { useUser } from "../../users/providers/UserProvider";
 import CardDeleteDialog from "./CardDeleteDialog";
 import useCards from "../hooks/useCards";
 
-export const CardAction = ({ cardId, onDelete }) => {
+export const CardAction = ({ cardUserId, cardId, onDelete }) => {
   const [isDialogOpen, setDialog] = useState(false);
   const { user } = useUser();
 
@@ -17,13 +17,6 @@ export const CardAction = ({ cardId, onDelete }) => {
   useEffect(() => {
     handleGetCards();
   }, []);
-
-  // const onDeleteCard = async (cardId) => {
-  //   console.log("action" + cardId);
-
-  //   await handleDeleteCard(cardId);
-  //   await handleGetCards();
-  // };
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
@@ -60,14 +53,14 @@ export const CardAction = ({ cardId, onDelete }) => {
         >
           <ShareIcon />
         </IconButton>
-        {/* {user && (user.isAdmin || user._id === cardUserId) && ( */}
-        <IconButton
-          aria-label="delete project"
-          onClick={() => handleDialog("open")}
-        >
-          <DeleteIcon />
-        </IconButton>
-        {/* )} */}
+        {user && (user.isAdmin || user._id === cardUserId) && (
+          <IconButton
+            aria-label="delete project"
+            onClick={() => handleDialog("open")}
+          >
+            <DeleteIcon />
+          </IconButton>
+        )}
       </CardActions>
 
       <CardDeleteDialog

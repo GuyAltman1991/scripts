@@ -6,6 +6,7 @@ import { getCards } from "../cards/service/cardApiService";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useCards from "../cards/hooks/useCards";
+// import CardsFeedback from "../cards/card/CardsFeedback";
 
 const ScriptsPage = ({ onDelete }) => {
   const { value, handleGetCards, handleDeleteCard } = useCards();
@@ -15,7 +16,6 @@ const ScriptsPage = ({ onDelete }) => {
   }, []);
 
   const onDeleteCard = async (cardId) => {
-    console.log("script" + cardId);
     await handleDeleteCard(cardId);
     await handleGetCards();
   };
@@ -27,12 +27,18 @@ const ScriptsPage = ({ onDelete }) => {
         <Typography variant="h2" color="initial">
           ALL THE SCRIPTS
         </Typography>
+
+        <Typography variant="h2" color="initial">
+          ALL THE SCRIPTS
+        </Typography>
         {isLoading && <Spinner />}
         {error && <Error errorMessage={error} />}
         {cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
         )}
-        {cards && !!cards.length && <Cards cards={cards} onDelete={onDelete} />}
+        {cards && !!cards.length && (
+          <Cards cards={cards} onDelete={onDeleteCard} />
+        )}
       </Container>
     </>
   );
