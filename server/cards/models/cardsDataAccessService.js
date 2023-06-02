@@ -35,7 +35,10 @@ const getCard = async (cardId) => {
 const getMyCards = async (userId) => {
   if (DB === "MONGODB") {
     try {
-      const cards = await Card.find({ user_id: userId });
+      const cards = await Card.find({ user_id: userId }).populate({
+        path: "user_id",
+        select: "name imageUrl email",
+      });
       if (!cards)
         throw new Error("could not find any information in the database");
       return Promise.resolve(cards);

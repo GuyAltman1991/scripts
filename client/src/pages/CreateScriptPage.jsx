@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUser } from "../users/providers/UserProvider";
 import { Navigate } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
@@ -34,6 +34,7 @@ const CreateScriptPage = () => {
     createScriptSchema,
     handleCreateCard
   );
+  const [count, setCount] = useState(0);
 
   if (!user || !user.isBusiness)
     return <Navigate replace to={ROUTES.SCRIPTS} />;

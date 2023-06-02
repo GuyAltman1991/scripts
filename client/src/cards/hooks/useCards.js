@@ -66,7 +66,7 @@ const useCards = () => {
       const normlizedCard = normlizeScriptCard(cardFromClient);
       const card = await createCard(normlizedCard);
       requestStatus(false, null, null, card);
-      navigate(ROUTES.SCRIPTS);
+      navigate(ROUTES.MY_SCRIPTS);
     } catch (error) {
       requestStatus(false, error, null);
     }

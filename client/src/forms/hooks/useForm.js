@@ -10,6 +10,7 @@ const useForm = (initialForm, schema, handleSubmit) => {
     setData(initialForm);
     setErrors({});
   }, [initialForm]);
+  const [count, setCount] = useState(0);
 
   const validateProperty = useCallback(
     ({ name, value }) => {

@@ -9,6 +9,7 @@ const {
   deleteCard,
   updateCard,
   likeCard,
+  getMyCards,
 } = require("../models/cardsDataAccessService");
 const validateCard = require("../validations/cardValidationService");
 const auth = require("../../auth/authService");
@@ -16,6 +17,20 @@ const Card = require("../models/mongodb/Card");
 const normlizeCard = require("../helpers/normlizeCard");
 
 const router = express.Router();
+
+router.get("/my-cards", auth, async (req, res) => {
+  try {
+    const { _id, isBusiness } = req.user;
+
+    if (!isBusiness)
+      return handleError(res, 403, "Authentication Error: Unauthorize user");
+
+    const cards = await getMyCards(_id);
+    return res.send(cards);
+  } catch (error) {
+    return handleError(res, error.status || 500, error.message);
+  }
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -35,21 +50,6 @@ router.get("/:id", async (req, res) => {
   } catch (error) {
     const { status } = error;
     handleError(res, status || 500, error.message);
-  }
-});
-
-router.get("/my-cards", async (req, res) => {
-  try {
-    const { _id, isBusiness } = req.user;
-
-    if (!isBusiness)
-      return handleError(res, 403, "Authentication Error: Unauthorize user");
-
-    const card = await getMyCards(_id);
-
-    return res.send(card);
-  } catch (error) {
-    return handleError(res, error.status || 500, error.message);
   }
 });
 

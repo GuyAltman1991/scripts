@@ -1,6 +1,8 @@
 import {
   Box,
+  Container,
   Hidden,
+  Paper,
   SpeedDial,
   SpeedDialAction,
   SpeedDialIcon,
@@ -59,35 +61,37 @@ const MyScriptsPage = () => {
   };
 
   return (
-    <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
-      {isLoading && <Spinner />}
-      {error && <Error errorMessage={error} />}
-      {cards && !cards.length && (
-        <p> there are no cards in the database that match the request</p>
-      )}
-      {cards && !!cards.length && (
-        <Cards onDelete={onDeletCard} cards={cards} />
-      )}
-      <Box sx={{ position: "relative", mt: 0, height: 320 }}>
-        <StyledSpeedDial
-          ariaLabel="SpeedDial playground example"
-          hidden={hidden}
-          icon={<SpeedDialIcon />}
-          direction={direction}
-        >
-          {actions.map((action) => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={() => {
-                navigate("/create_script");
-              }}
-            />
-          ))}
-        </StyledSpeedDial>
-      </Box>
-    </Box>
+    <>
+      {" "}
+      <StyledSpeedDial
+        sx={{ position: "sticky" }}
+        ariaLabel="SpeedDial playground example"
+        hidden={hidden}
+        icon={<SpeedDialIcon />}
+        direction={direction}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={() => {
+              navigate("/create_script");
+            }}
+          />
+        ))}
+      </StyledSpeedDial>
+      <Container sx={{ mt: 2, transform: "translateZ(0px)", flexGrow: 1 }}>
+        {isLoading && <Spinner />}
+        {error && <Error errorMessage={error} />}
+        {cards && !cards.length && (
+          <p> there are no cards in the database that match the request</p>
+        )}
+        {cards && !!cards.length && (
+          <Cards onDelete={onDeletCard} cards={cards} />
+        )}
+      </Container>
+    </>
   );
 };
 
