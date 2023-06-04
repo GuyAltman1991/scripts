@@ -12,10 +12,11 @@ import ROUTES from "../../routes/routesModel";
 
 export const CardAction = ({ cardUserId, cardId, onDelete }) => {
   const [isDialogOpen, setDialog] = useState(false);
+  const [isLike, setLike] = useState(null);
   const { user } = useUser();
   const navigate = useNavigate();
 
-  const { handleGetCards, handleDeleteCard } = useCards();
+  const { handleGetCards, handleLikeCard } = useCards();
 
   useEffect(() => {
     handleGetCards();
@@ -29,6 +30,11 @@ export const CardAction = ({ cardUserId, cardId, onDelete }) => {
   const handleDelete = () => {
     handleDialog();
     onDelete(cardId);
+  };
+
+  const onLike = async () => {
+    setLike((prev) => !prev);
+    await handleLikeCard(cardId);
   };
 
   return (
@@ -46,9 +52,11 @@ export const CardAction = ({ cardUserId, cardId, onDelete }) => {
           sx={{ flexGrow: 1 }}
         ></Typography>
         <IconButton
+          sx={{ color: isLike ? "red" : "" }}
           aria-label="add to favorites"
-          onMouseEnter={() => console.log("enter")}
-          onMouseLeave={() => console.log("leave")}
+          onClick={() => {
+            onLike();
+          }}
         >
           <FavoriteIcon />
         </IconButton>

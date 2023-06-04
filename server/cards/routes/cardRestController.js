@@ -64,7 +64,6 @@ router.post("/", auth, async (req, res) => {
     card = await normlizeCard(card, user._id);
     card = await createCard(card);
 
-    // get card
     const fetchedCard = await getCard(card._id);
 
     return res.send(fetchedCard);
