@@ -1,4 +1,5 @@
 const Card = require("../models/mongodb/Card");
+var mongoose = require("mongoose");
 
 const DB = process.env.DB || "MONGODB";
 
@@ -24,6 +25,9 @@ const getCard = async (cardId) => {
         path: "user_id",
         select: "name imageUrl email",
       });
+      if (!card)
+        throw new Error("could not find this project in the database!");
+
       return Promise.resolve(card);
     } catch (error) {
       return Promise.reject(error);

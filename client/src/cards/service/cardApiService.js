@@ -14,6 +14,7 @@ export const getMyCards = async () => {
 export const getCards = async () => {
   try {
     const { data } = await axios.get(`${apiUrl}/cards`);
+
     return data;
   } catch (error) {
     return Promise.reject(error.message);

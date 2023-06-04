@@ -18,7 +18,6 @@ const useCards = () => {
   const [card, setCard] = useState(null);
   const [isLoading, setLoading] = useState(null);
   const [error, setError] = useState(null);
-
   const navigate = useNavigate();
   useAxios();
 
@@ -40,15 +39,20 @@ const useCards = () => {
     }
   };
 
+  ///////////
+
   const handleGetCard = async (cardId) => {
     try {
       setLoading(true);
       const card = await getCard(cardId);
       requestStatus(false, null, null, card);
+      console.log(card);
     } catch (error) {
       requestStatus(false, error, null);
     }
   };
+
+  //////////////
 
   const handleGetMyCards = async () => {
     try {

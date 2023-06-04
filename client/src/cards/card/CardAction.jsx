@@ -7,10 +7,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useUser } from "../../users/providers/UserProvider";
 import CardDeleteDialog from "./CardDeleteDialog";
 import useCards from "../hooks/useCards";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
 
 export const CardAction = ({ cardUserId, cardId, onDelete }) => {
   const [isDialogOpen, setDialog] = useState(false);
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const { handleGetCards, handleDeleteCard } = useCards();
 
@@ -31,7 +34,12 @@ export const CardAction = ({ cardUserId, cardId, onDelete }) => {
   return (
     <>
       <CardActions sx={{ mt: 8 }}>
-        <Button size="small">Read More</Button>
+        <Button
+          size="small"
+          onClick={() => navigate(`${ROUTES.SCRIPT_PAGE}/${cardId}`)}
+        >
+          Read More
+        </Button>
         <Typography
           variant="h6"
           component="div"

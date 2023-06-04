@@ -32,6 +32,17 @@ router.get("/my-cards", auth, async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const card = await getCard(id);
+    return res.send(card);
+  } catch (error) {
+    const { status } = error;
+    handleError(res, status || 500, error.message);
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
     const cards = await getCards();
@@ -39,17 +50,6 @@ router.get("/", async (req, res) => {
   } catch (error) {
     const { status } = error;
     return handleError(res, status || 500, error.message);
-  }
-});
-
-router.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const card = await getCard(id);
-    res.send(card);
-  } catch (error) {
-    const { status } = error;
-    handleError(res, status || 500, error.message);
   }
 });
 
