@@ -12,8 +12,10 @@ import normlizeScriptCard from "../helpers/normlizeScriptCard";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useAxios from "../../hooks/useAxios";
+import { useUser } from "../../users/providers/UserProvider";
 
 const useCards = () => {
+  const { user } = useUser();
   const [cards, setCards] = useState(null);
   const [card, setCard] = useState(null);
   const [isLoading, setLoading] = useState(null);
@@ -39,8 +41,6 @@ const useCards = () => {
     }
   };
 
-  ///////////
-
   const handleGetCard = async (cardId) => {
     try {
       setLoading(true);
@@ -52,8 +52,6 @@ const useCards = () => {
     }
   };
 
-  //////////////
-
   const handleGetMyCards = async () => {
     try {
       setLoading(true);
@@ -63,6 +61,20 @@ const useCards = () => {
       requestStatus(false, error, null);
     }
   };
+
+  const handleGetFavCards = useCallback(async () => {
+    try {
+      setLoading(true);
+      const cards = await getCards();
+      const favCards = cards.filter(
+        (card) => !!card.likes.find((id) => id === user._id._id)
+      );
+      console.log(favCards);
+      requestStatus(false, null, favCards);
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  }, []);
 
   const handleCreateCard = useCallback(async (cardFromClient) => {
     try {
@@ -115,6 +127,7 @@ const useCards = () => {
     handleGetCards,
     handleGetCard,
     handleGetMyCards,
+    handleGetFavCards,
     handleCreateCard,
     handleUpdateCard,
     handleDeleteCard,

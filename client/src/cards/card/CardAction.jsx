@@ -10,7 +10,7 @@ import useCards from "../hooks/useCards";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 
-export const CardAction = ({ cardUserId, cardId, onDelete }) => {
+export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
   const [isDialogOpen, setDialog] = useState(false);
   const [isLike, setLike] = useState(null);
   const { user } = useUser();
@@ -32,9 +32,10 @@ export const CardAction = ({ cardUserId, cardId, onDelete }) => {
     onDelete(cardId);
   };
 
-  const onLike = async () => {
+  const handleLike = async () => {
     setLike((prev) => !prev);
     await handleLikeCard(cardId);
+    onLike();
   };
 
   return (
@@ -54,9 +55,7 @@ export const CardAction = ({ cardUserId, cardId, onDelete }) => {
         <IconButton
           sx={{ color: isLike ? "red" : "" }}
           aria-label="add to favorites"
-          onClick={() => {
-            onLike();
-          }}
+          onClick={handleLike}
         >
           <FavoriteIcon />
         </IconButton>

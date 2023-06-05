@@ -5,7 +5,7 @@ import { func } from "prop-types";
 import { CardAction } from "./CardAction";
 import CardBody from "./CardBody";
 
-const Card = ({ card, onDelete }) => {
+const Card = ({ card, onDelete, onLike }) => {
   return (
     <Box sx={{ mt: 8 }}>
       <MuiCard sx={{ minWidth: 275, minHeight: "20vh" }}>
@@ -14,6 +14,7 @@ const Card = ({ card, onDelete }) => {
           onDelete={onDelete}
           cardId={card._id}
           cardUserId={card.user_id._id}
+          onLike={onLike}
         />
       </MuiCard>
     </Box>
