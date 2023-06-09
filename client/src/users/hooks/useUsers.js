@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../providers/UserProvider";
 import useAxios from "../../hooks/useAxios";
-import { login } from "../services/usersApiService";
+import { getUserFromServer, login } from "../services/usersApiService";
 import {
   getUser,
   setTokenInLocalStorage,
@@ -42,6 +42,16 @@ const useUsers = () => {
     },
     [navigate, requestStatus]
   );
+  const handleGetUser = async () => {
+    try {
+      const userFromLocalStorage = await getUser();
+      const userId = userFromLocalStorage._id;
+      const user = await getUserFromServer(userId);
+      requestStatus(false, null, null, user);
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  };
 
   return {
     isLoading,
@@ -49,6 +59,7 @@ const useUsers = () => {
     user,
     users,
     handleLogin,
+    handleGetUser,
   };
 };
 

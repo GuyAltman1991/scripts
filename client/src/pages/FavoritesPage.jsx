@@ -1,23 +1,22 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useCards from "../cards/hooks/useCards";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Spinner from "../components/Spinner";
-import Error from "../components/Error";
+// import Error from "../components/Error";
 import Cards from "../cards/Cards";
 
 const FavoritesPage = () => {
-  const { handleGetFavCards, value, handleDeleteCard, handleGetCards } =
-    useCards();
+  const { handleGetFavCards, value, handleDeleteCard } = useCards();
   const { cards, isLoading, error } = value;
+
   useEffect(() => {
     handleGetFavCards();
-    console.log(cards);
   }, []);
 
   const onDeleteCard = useCallback(
     async (cardId) => {
       await handleDeleteCard(cardId);
-      await handleGetCards();
+      await handleGetFavCards();
     },
     [handleDeleteCard]
   );
@@ -27,9 +26,9 @@ const FavoritesPage = () => {
   }, []);
 
   return (
-    <Container>
+    <Container sx={{ mt: 2 }}>
       {isLoading && <Spinner />}
-
+      {error && console.log(error)}
       {cards && !cards.length && (
         <p> there are no cards in the database that match the request</p>
       )}

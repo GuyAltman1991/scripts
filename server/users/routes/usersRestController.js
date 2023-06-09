@@ -73,6 +73,7 @@ router.get("/:id", auth, async (req, res) => {
       isBusiness: user.isBusiness,
       _id: user._id,
       email: user.email,
+      imageUrl: user.imageUrl,
     };
     return res.send(filterUser);
   } catch (error) {

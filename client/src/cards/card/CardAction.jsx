@@ -35,7 +35,7 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
   const handleLike = async () => {
     setLike((prev) => !prev);
     await handleLikeCard(cardId);
-    onLike();
+    // onLike();
   };
 
   return (

@@ -13,7 +13,7 @@ export const login = async (user) => {
 
 export const getUserFromServer = async (userId) => {
   try {
-    const { data } = await axios.get(`${apiUrl}/users${userId}`);
+    const { data } = await axios.get(`${apiUrl}/users/${userId}`);
     return data;
   } catch (error) {
     return Promise.reject(error.message);

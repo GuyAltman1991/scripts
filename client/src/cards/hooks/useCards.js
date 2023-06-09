@@ -65,12 +65,12 @@ const useCards = () => {
   const handleGetFavCards = useCallback(async () => {
     try {
       setLoading(true);
+
       const cards = await getCards();
       const favCards = cards.filter(
-        (card) => !!card.likes.find((id) => id === user._id._id)
+        (card) => !!card.likes.find((_id) => _id === user._id)
       );
-      console.log(favCards);
-      requestStatus(false, null, favCards);
+      requestStatus(false, null, favCards, null);
     } catch (error) {
       requestStatus(false, error, null);
     }

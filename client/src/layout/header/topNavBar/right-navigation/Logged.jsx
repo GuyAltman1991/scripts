@@ -1,14 +1,22 @@
-import { Avatar, IconButton, Tooltip } from "@mui/material";
-import React from "react";
+import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useUser } from "../../../../users/providers/UserProvider";
+import useUsers from "../../../../users/hooks/useUsers";
+import Dashboard from "../../../../components/Dashboard";
 
 const Logged = () => {
+  const { user } = useUser();
   // const setOpen = useMenu();
+  const { handleGetUser } = useUsers();
+
+  useEffect(() => {
+    handleGetUser();
+  }, []);
+
   return (
-    <Tooltip title="Open settings">
-      <IconButton sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}>
-        <Avatar alt="Bird" src="/assets/images/avatar.png" />
-      </IconButton>
-    </Tooltip>
+    <Box sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}>
+      <Dashboard src={user.imageUrl} />
+    </Box>
   );
   //   onClick={() => setOpen(true)}
 };
