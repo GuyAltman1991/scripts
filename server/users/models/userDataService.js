@@ -31,7 +31,6 @@ const loginUser = async ({ email, password }) => {
 
       const token = generateAuthToken(user);
       return Promise.resolve(token);
-      // return Promise.resolve("user loged in");
     } catch (error) {
       error.status = 400;
       return Promise.reject(error);

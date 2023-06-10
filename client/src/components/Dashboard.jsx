@@ -4,15 +4,29 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { Avatar } from "@mui/material";
+import { removeToken } from "../users/services/localStorageService";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../routes/routesModel";
 
 const Dashboard = ({ src }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogOut = async () => {
+    try {
+      setAnchorEl(null);
+      removeToken();
+      navigate(ROUTES.ROOT);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -41,7 +55,7 @@ const Dashboard = ({ src }) => {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleLogOut}>Logout</MenuItem>
       </Menu>
     </div>
   );

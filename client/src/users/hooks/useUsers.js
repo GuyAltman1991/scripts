@@ -27,6 +27,8 @@ const useUsers = () => {
     [setUser]
   );
 
+  const handleSignUp = useCallback(async () => {});
+
   const handleLogin = useCallback(
     async (user) => {
       try {
@@ -60,6 +62,7 @@ const useUsers = () => {
     users,
     handleLogin,
     handleGetUser,
+    handleSignUp,
   };
 };
 

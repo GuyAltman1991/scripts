@@ -8,8 +8,10 @@ import NavItem from "../../../routes/components/NavItem";
 import { Link } from "@mui/material";
 import NavBarLink from "../../../routes/components/NavBarLink";
 import RightNavBar from "./right-navigation/RightNavBar";
+import { useUser } from "../../../users/providers/UserProvider";
 
 const AppNavBar = () => {
+  const { user } = useUser();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#024059" }}>
@@ -24,9 +26,9 @@ const AppNavBar = () => {
           </NavBarLink>
 
           <NavItem label="about" to={ROUTES.ABOUT} />
-          <NavItem label="my scripts" to={ROUTES.MY_SCRIPTS} />
-          <NavItem label="all scripts" to={ROUTES.SCRIPTS} />
-          <NavItem label="my favorites" to={ROUTES.FAVORITES} />
+          {user && <NavItem label="my scripts" to={ROUTES.MY_SCRIPTS} />}
+          {user && <NavItem label="all scripts" to={ROUTES.SCRIPTS} />}
+          {user && <NavItem label="my favorites" to={ROUTES.FAVORITES} />}
           <Typography
             variant="h6"
             component="div"

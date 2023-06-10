@@ -19,7 +19,6 @@ const Input = ({
   return (
     <Grid item xs={12}>
       <TextField
-        minRows={minRows}
         multiline={true}
         variant={variant}
         label={lable}

@@ -11,11 +11,11 @@ const Logged = () => {
 
   useEffect(() => {
     handleGetUser();
-  }, []);
+  }, [user]);
 
   return (
     <Box sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}>
-      <Dashboard src={user.imageUrl} />
+      {user && <Dashboard src={user.imageUrl} />}
     </Box>
   );
   //   onClick={() => setOpen(true)}

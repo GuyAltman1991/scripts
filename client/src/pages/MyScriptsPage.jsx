@@ -51,7 +51,7 @@ const MyScriptsPage = () => {
   const { isLoading, error, cards } = value;
 
   useEffect(() => {
-    if (!user) return navigate(ROUTES.SCRIPTS);
+    if (!user) return navigate(ROUTES.ROOT);
     handleGetMyCards();
   }, [user]);
 
