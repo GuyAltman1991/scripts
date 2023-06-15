@@ -3,6 +3,7 @@ const ROUTES = {
   ABOUT: "/about",
   LOGIN: "/login",
   SIGNUP: "/signup",
+  PROFILE: "/profile",
   SCRIPTS: "/scripts",
   FAVORITES: "/favotires",
   WORTH_READING: "/worth_reading",

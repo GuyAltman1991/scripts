@@ -19,6 +19,11 @@ const Dashboard = ({ src }) => {
     setAnchorEl(null);
   };
 
+  const handelGetMyProfile = () => {
+    setAnchorEl(null);
+    navigate(ROUTES.PROFILE);
+  };
+
   const handleLogOut = async () => {
     try {
       setAnchorEl(null);
@@ -53,7 +58,7 @@ const Dashboard = ({ src }) => {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handelGetMyProfile}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleLogOut}>Logout</MenuItem>
       </Menu>

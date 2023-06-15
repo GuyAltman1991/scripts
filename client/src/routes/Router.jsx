@@ -12,6 +12,7 @@ import MyConnectionsPage from "../pages/MyConnectionsPage";
 import MyScriptsPage from "../pages/MyScriptsPage";
 import CreateScriptPage from "../pages/CreateScriptPage";
 import ScriptPage from "../pages/ScriptPage";
+import ProfilePage from "../users/pages/ProfilePage";
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
       <Route path={ROUTES.SCRIPTS} element={<ScriptsPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignUpPage />} />
+      <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
       <Route path={ROUTES.FAVORITES} element={<FavoritesPage />} />
       <Route path={ROUTES.WORTH_READING} element={<WorthReadingPage />} />
       <Route path={ROUTES.MY_CONNECTIONS} element={<MyConnectionsPage />} />
