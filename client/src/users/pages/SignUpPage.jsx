@@ -44,7 +44,7 @@ const SignUpPage = () => {
           type="text"
           lable="first name"
           name="firstName"
-          error={value.errors.password}
+          error={value.errors.firstName}
           onChange={rest.handleChange}
           data={value.data}
         />
@@ -52,11 +52,12 @@ const SignUpPage = () => {
           type="text"
           lable="last name"
           name="lastName"
-          error={value.errors.password}
+          error={value.errors.lastName}
           onChange={rest.handleChange}
           data={value.data}
         />
 
+        {/* for future use:  */}
         {/* <ReactPhone onChange={rest.handleChange} data={value.data} /> */}
 
         <Input
@@ -80,7 +81,7 @@ const SignUpPage = () => {
           type="phone"
           lable="phone"
           name="phone"
-          error={value.errors.password}
+          error={value.errors.phone}
           onChange={rest.handleChange}
           data={value.data}
         />
@@ -92,13 +93,14 @@ const SignUpPage = () => {
           onChange={rest.handleChange}
           data={value.data}
         />
-        {/* 
-        <ImageUpload
+
+        {/* for future use:  */}
+        {/* <ImageUpload
           onChange={rest.handleChange}
           data={value.data}
           name="imageUrl"
           imageUrl={value.data.imageUrl}
-          error={value.errors.image}
+          error={value.errors.imageUrl}
         /> */}
       </Form>
     </Container>

@@ -53,7 +53,7 @@ const MyScriptsPage = () => {
   useEffect(() => {
     if (!user) return navigate(ROUTES.ROOT);
     handleGetMyCards();
-  }, [user]);
+  }, []);
 
   const onDeletCard = async (cardId) => {
     await handleDeleteCard(cardId);

@@ -5,19 +5,19 @@ import { object, func } from "prop-types";
 const useForm = (initialForm, schema, handleSubmit) => {
   const [data, setData] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [imageUrl, setImageUrl] = useState(null);
+  // const [imageUrl, setImageUrl] = useState(null);
 
-  console.log(data);
+  ////////////// Guy - for future use:///////////////////////
+  // const handleFileUpload = async (event) => {
+  //   const file = await event.target.files[0];
+  //   console.log(file);
+  //   const reader = new FileReader();
+  //   reader.onloadend = () => {
+  //     setImageUrl(reader.result);
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
 
-  const handleFileUpload = async (event) => {
-    const file = await event.target.files[0];
-    console.log(file);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-    };
-    reader.readAsDataURL(file);
-  };
   const handleReset = useCallback(() => {
     setData(initialForm);
     setErrors({});
@@ -30,6 +30,7 @@ const useForm = (initialForm, schema, handleSubmit) => {
       const obj = { [name]: value };
       const generateSchema = Joi.object({ [name]: schema[name] });
       const { error } = generateSchema.validate(obj);
+
       return error ? error.details[0].message : null;
     },
     [schema]
@@ -47,10 +48,7 @@ const useForm = (initialForm, schema, handleSubmit) => {
           delete obj[name];
           return obj;
         });
-      if (name === "imageUrl") {
-        console.log(target);
-        handleFileUpload(target.value);
-      }
+
       setData((prev) => ({ ...prev, [name]: value }));
     },
     [validateProperty]

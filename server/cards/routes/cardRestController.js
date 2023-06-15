@@ -20,9 +20,10 @@ const router = express.Router();
 
 router.get("/my-cards", auth, async (req, res) => {
   try {
-    const { _id, isBusiness } = req.user;
+    const user = req.user;
+    const _id = req.user._id;
 
-    if (!isBusiness)
+    if (!user)
       return handleError(res, 403, "Authentication Error: Unauthorize user");
 
     const cards = await getMyCards(_id);
