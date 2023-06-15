@@ -1,9 +1,9 @@
 import Joi from "joi";
 
 const signupSchema = {
-  first: Joi.string().min(2).required(),
-  last: Joi.string().min(2).required(),
-  phone: Joi.string().required(),
+  firstName: Joi.string().min(2).required(),
+  lastName: Joi.string().min(2).required(),
+  phone: Joi.string(),
   email: Joi.string()
     .ruleset.pattern(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/)
     .rule({ message: "please enter a valid email" })

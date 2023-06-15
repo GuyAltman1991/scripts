@@ -30,13 +30,7 @@
       "phone": "0547081688",
       "password": "Aa1234!",
       "imageUrl": "https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565__340.jpg",
-      "address": {
-        "state": "ss",
-        "country": "israel",
-        "city": "ramat gan",
-        "street": "pinchas",
-        "houseNumber": "25"
-      },
+
       "isAdmin": false,
       "isBusiness": true
     },
@@ -49,13 +43,7 @@
       "phone": "0547081688",
       "password": "Aa1234!",
       "imageUrl": "https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565__340.jpg",
-      "address": {
-        "state": "ss",
-        "country": "israel",
-        "city": "ramat gan",
-        "street": "pinchas",
-        "houseNumber": "25"
-      },
+
       "isAdmin": false,
       "isBusiness": true
     }

@@ -11,6 +11,14 @@ export const login = async (user) => {
   }
 };
 
+export const signup = async (user) => {
+  try {
+    const { data } = await axios.post(`${apiUrl}/users`, user);
+  } catch (error) {
+    return Promise.error(error);
+  }
+};
+
 export const getUserFromServer = async (userId) => {
   try {
     const { data } = await axios.get(`${apiUrl}/users/${userId}`);

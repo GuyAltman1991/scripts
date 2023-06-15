@@ -1,16 +1,29 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Joi from "joi";
 import { object, func } from "prop-types";
 
 const useForm = (initialForm, schema, handleSubmit) => {
   const [data, setData] = useState(initialForm);
   const [errors, setErrors] = useState({});
+  const [imageUrl, setImageUrl] = useState(null);
 
+  console.log(data);
+
+  const handleFileUpload = async (event) => {
+    const file = await event.target.files[0];
+    console.log(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
   const handleReset = useCallback(() => {
     setData(initialForm);
     setErrors({});
   }, [initialForm]);
-  const [count, setCount] = useState(0);
+
+  // const [count, setCount] = useState(0);
 
   const validateProperty = useCallback(
     ({ name, value }) => {
@@ -34,6 +47,10 @@ const useForm = (initialForm, schema, handleSubmit) => {
           delete obj[name];
           return obj;
         });
+      if (name === "imageUrl") {
+        console.log(target);
+        handleFileUpload(target.value);
+      }
       setData((prev) => ({ ...prev, [name]: value }));
     },
     [validateProperty]
@@ -43,7 +60,6 @@ const useForm = (initialForm, schema, handleSubmit) => {
     const schemaForValidate = Joi.object(schema);
     const { error } = schemaForValidate.validate(data);
     if (error) return error;
-
     return null;
   }, [schema, data]);
 

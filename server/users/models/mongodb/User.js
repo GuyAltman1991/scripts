@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const AddressSheman = require("./Address");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -45,7 +44,6 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     lowercase: true,
   },
-  address: AddressSheman,
   isAdmin: { type: Boolean, default: false },
   isBusiness: { type: Boolean, default: false },
   createdAt: {

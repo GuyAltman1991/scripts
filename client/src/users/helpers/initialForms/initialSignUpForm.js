@@ -1,6 +1,6 @@
 const initialSignUpForm = {
-  first: "",
-  last: "",
+  firstName: "",
+  lastName: "",
   phone: "",
   email: "",
   password: "",

@@ -7,6 +7,11 @@ import useForm from "../../forms/hooks/useForm";
 import useUsers from "../hooks/useUsers";
 import initialSignUpForm from "../helpers/initialForms/initialSignUpForm";
 import signupSchema from "../models/joi-schema/signupSchema";
+import "react-phone-number-input/style.css";
+import ReactPhone from "../helpers/reactPhone/ReactPhone";
+import ImageUpload from "../helpers/ImageUpload";
+import { useUser } from "../providers/UserProvider";
+import { Navigate } from "react-router-dom";
 
 const SignUpPage = () => {
   const { handleSignUp } = useUsers();
@@ -16,6 +21,8 @@ const SignUpPage = () => {
     handleSignUp
   );
 
+  const { user } = useUser();
+  if (user) return <Navigate replace to={ROUTES.SCRIPTS} />;
   return (
     <Container
       sx={{
@@ -49,14 +56,9 @@ const SignUpPage = () => {
           onChange={rest.handleChange}
           data={value.data}
         />
-        <Input
-          type="text"
-          lable="phone"
-          name="phone"
-          error={value.errors.password}
-          onChange={rest.handleChange}
-          data={value.data}
-        />
+
+        {/* <ReactPhone onChange={rest.handleChange} data={value.data} /> */}
+
         <Input
           data={value.data}
           error={value.errors.email}
@@ -75,13 +77,29 @@ const SignUpPage = () => {
           data={value.data}
         />
         <Input
-          type="text"
-          lable="image"
-          name="imageUrl"
+          type="phone"
+          lable="phone"
+          name="phone"
           error={value.errors.password}
           onChange={rest.handleChange}
           data={value.data}
         />
+        <Input
+          type="text"
+          lable="imageUrl"
+          name="imageUrl"
+          error={value.errors.imageUrl}
+          onChange={rest.handleChange}
+          data={value.data}
+        />
+        {/* 
+        <ImageUpload
+          onChange={rest.handleChange}
+          data={value.data}
+          name="imageUrl"
+          imageUrl={value.data.imageUrl}
+          error={value.errors.image}
+        /> */}
       </Form>
     </Container>
   );
