@@ -1,6 +1,5 @@
 import jwtDecode from "jwt-decode";
 const TOKEN = "token";
-
 export const setTokenInLocalStorage = (encryptedToken) =>
   localStorage.setItem(TOKEN, encryptedToken);
 

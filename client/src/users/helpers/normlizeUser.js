@@ -1,8 +1,7 @@
 const normlizeUser = (user) => ({
-  name: {
-    firstName: user.firstName,
-    lastName: user.lastName,
-  },
+  firstName: user.name.firstName,
+  lastName: user.name.lastName,
+
   phone: user.phone,
   email: user.email,
   password: user.password,

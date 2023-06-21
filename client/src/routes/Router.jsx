@@ -22,7 +22,7 @@ const Router = () => {
       <Route path={ROUTES.SCRIPTS} element={<ScriptsPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignUpPage />} />
-      <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+      <Route path={`${ROUTES.PROFILE}/:userId`} element={<ProfilePage />} />
       <Route path={ROUTES.FAVORITES} element={<FavoritesPage />} />
       <Route path={ROUTES.WORTH_READING} element={<WorthReadingPage />} />
       <Route path={ROUTES.MY_CONNECTIONS} element={<MyConnectionsPage />} />

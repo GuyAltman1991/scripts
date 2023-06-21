@@ -11,6 +11,7 @@ const {
 const { handleError } = require("../../utils/errorHandler");
 const loginValidation = require("../validation/loginValidation");
 const auth = require("../../auth/authService");
+
 const router = express.Router();
 
 router.post("/", async (req, res) => {
@@ -66,7 +67,8 @@ router.get("/:id", auth, async (req, res) => {
         403,
         "Authorization error: you must be an admin to get the user"
       );
-    const user = await getUser(userId);
+    let user = await getUser(userId);
+
     const filterUser = {
       name: { firstName: user.name.firstName, lastName: user.name.lastName },
       isAdmin: user.isAdmin,
@@ -74,7 +76,9 @@ router.get("/:id", auth, async (req, res) => {
       _id: user._id,
       email: user.email,
       imageUrl: user.imageUrl,
+      phone: user.phone,
     };
+    console.log(filterUser);
     return res.send(filterUser);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);

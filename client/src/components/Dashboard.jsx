@@ -7,6 +7,7 @@ import { Avatar } from "@mui/material";
 import { removeToken } from "../users/services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
+import { useUser } from "../users/providers/UserProvider";
 
 const Dashboard = ({ src }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,10 +19,12 @@ const Dashboard = ({ src }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const { user } = useUser();
+  const userId = user._id;
 
   const handelGetMyProfile = () => {
     setAnchorEl(null);
-    navigate(ROUTES.PROFILE);
+    navigate(`${ROUTES.PROFILE}/:${userId}`);
   };
 
   const handleLogOut = async () => {
