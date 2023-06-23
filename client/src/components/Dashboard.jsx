@@ -10,6 +10,8 @@ import ROUTES from "../routes/routesModel";
 import { useUser } from "../users/providers/UserProvider";
 
 const Dashboard = ({ src }) => {
+  const [direction, setDirection] = React.useState("down");
+  const [hidden, setHidden] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);

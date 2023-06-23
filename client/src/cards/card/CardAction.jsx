@@ -16,7 +16,8 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
   const { user } = useUser();
   const navigate = useNavigate();
 
-  const { handleGetCards, handleLikeCard } = useCards();
+  const { handleGetCards, handleLikeCard, value } = useCards();
+  const { cards } = value;
 
   useEffect(() => {
     handleGetCards();
@@ -52,6 +53,7 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
           component="div"
           sx={{ flexGrow: 1 }}
         ></Typography>
+
         <IconButton
           sx={{ color: isLike ? "red" : "" }}
           aria-label="add to favorites"
