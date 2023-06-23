@@ -48,6 +48,7 @@ const useUsers = () => {
     async (user) => {
       try {
         const normlizedUser = normlizeUser(user);
+
         await signup(normlizedUser);
         await handleLogin({ email: user.email, password: user.password });
       } catch (error) {
