@@ -11,7 +11,7 @@ const Logged = () => {
 
   useEffect(() => {
     handleGetUser();
-  }, [user]);
+  }, []);
 
   return (
     <Box sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}>

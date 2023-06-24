@@ -68,7 +68,6 @@ router.get("/:id", auth, async (req, res) => {
         "Authorization error: you must be an admin to get the user"
       );
     let user = await getUser(userId);
-
     const filterUser = {
       name: { firstName: user.name.firstName, lastName: user.name.lastName },
       isAdmin: user.isAdmin,
@@ -78,7 +77,6 @@ router.get("/:id", auth, async (req, res) => {
       imageUrl: user.imageUrl,
       phone: user.phone,
     };
-    console.log(filterUser);
     return res.send(filterUser);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);

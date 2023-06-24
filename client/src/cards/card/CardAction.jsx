@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import FolderIcon from "@mui/icons-material/Folder";
+import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useUser } from "../../users/providers/UserProvider";
 import CardDeleteDialog from "./CardDeleteDialog";
@@ -28,6 +29,10 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
     setDialog(false);
   };
 
+  // const handleEditCard = () => {
+  //   navigate(ROUTES.EDIT_SCRIPT);
+  //   console.log("edit");
+  // };
   const handleDelete = () => {
     handleDialog();
     onDelete(cardId);
@@ -76,6 +81,14 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
             onClick={() => handleDialog("open")}
           >
             <DeleteIcon />
+          </IconButton>
+        )}
+        {user && (user.isAdmin || user._id === cardUserId) && (
+          <IconButton
+            aria-label="edit project"
+            onClick={() => navigate(`${ROUTES.EDIT_SCRIPT}/${user._id}`)}
+          >
+            <EditIcon />
           </IconButton>
         )}
       </CardActions>

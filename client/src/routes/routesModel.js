@@ -11,6 +11,7 @@ const ROUTES = {
   MY_SCRIPTS: "/my_scripts",
   CREATE_SCRIPT_PAGE: "/create_script",
   SCRIPT_PAGE: "/script_page",
+  EDIT_SCRIPT: "/edit_script",
 };
 
 export default ROUTES;

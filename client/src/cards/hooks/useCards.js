@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useAxios from "../../hooks/useAxios";
 import { useUser } from "../../users/providers/UserProvider";
+import { SnackbarProvider } from "../../providers/SnackbarProvider";
 
 const useCards = () => {
   const { user } = useUser();
@@ -88,11 +89,13 @@ const useCards = () => {
     }
   }, []);
 
-  const handleUpdateCard = async (cardFromClient) => {
+  const handleUpdateCard = async (cardId, cardFromClient) => {
     try {
       setLoading(true);
-      const card = await editCard(cardFromClient);
+      const card = await editCard(cardId, cardFromClient);
       requestStatus(false, null, null, card);
+      SnackbarProvider("script has been update");
+      navigate(ROUTES.MY_SCRIPTS);
     } catch (error) {
       requestStatus(false, error, null);
     }

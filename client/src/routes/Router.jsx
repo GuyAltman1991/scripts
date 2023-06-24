@@ -13,6 +13,7 @@ import MyScriptsPage from "../pages/MyScriptsPage";
 import CreateScriptPage from "../pages/CreateScriptPage";
 import ScriptPage from "../pages/ScriptPage";
 import ProfilePage from "../users/pages/ProfilePage";
+import EditScriptPage from "../pages/EditScriptPage";
 
 const Router = () => {
   return (
@@ -29,6 +30,7 @@ const Router = () => {
       <Route path={ROUTES.MY_SCRIPTS} element={<MyScriptsPage />} />
       <Route path={`${ROUTES.SCRIPT_PAGE}/:cardId`} element={<ScriptPage />} />
       <Route path={ROUTES.CREATE_SCRIPT_PAGE} element={<CreateScriptPage />} />
+      <Route path={`${ROUTES.EDIT_SCRIPT}/:id`} element={<EditScriptPage />} />
     </Routes>
   );
 };

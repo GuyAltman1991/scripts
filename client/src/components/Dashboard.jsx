@@ -8,11 +8,14 @@ import { removeToken } from "../users/services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
 import { useUser } from "../users/providers/UserProvider";
+import useUsers from "../users/hooks/useUsers";
 
 const Dashboard = ({ src }) => {
   const [direction, setDirection] = React.useState("down");
   const [hidden, setHidden] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { handleGetUser } = useUsers();
+
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -33,6 +36,7 @@ const Dashboard = ({ src }) => {
     try {
       setAnchorEl(null);
       removeToken();
+      handleGetUser();
       navigate(ROUTES.ROOT);
     } catch (error) {
       console.log(error);
