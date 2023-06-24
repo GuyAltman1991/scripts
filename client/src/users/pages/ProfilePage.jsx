@@ -21,7 +21,7 @@ const ProfilePage = () => {
     handleGetUser();
   }, []);
 
-  if (!user) return <Navigate replace to={ROUTES.SCRIPTS} />;
+  if (!isLoading && !user) return <Navigate replace to={ROUTES.SCRIPTS} />;
 
   return (
     <Box
@@ -34,7 +34,7 @@ const ProfilePage = () => {
     >
       {isLoading && <Spinner />}
       {error && console.log(error)}
-      {user && (
+      {!isLoading && user && (
         <Card sx={{ minWidth: 345, minHeight: 400 }}>
           <CardMedia
             component="img"

@@ -61,11 +61,11 @@ const useUsers = () => {
   const handleGetUser = async () => {
     try {
       setLoading(true);
-
       const userFromLocalStorage = await getUser();
       const userId = userFromLocalStorage._id;
       const user = await getUserFromServer(userId);
       requestStatus(false, null, null, user);
+
       return user;
     } catch (error) {
       requestStatus(false, error, null);

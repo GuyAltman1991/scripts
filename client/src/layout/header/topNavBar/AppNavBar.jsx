@@ -13,7 +13,7 @@ import { useUser } from "../../../users/providers/UserProvider";
 const AppNavBar = () => {
   const { user } = useUser();
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, height: "65px" }}>
       <AppBar position="static" sx={{ backgroundColor: "#024059" }}>
         <Toolbar>
           <NavBarLink to={ROUTES.ROOT}>

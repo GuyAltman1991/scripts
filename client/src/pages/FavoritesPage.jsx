@@ -4,10 +4,14 @@ import { Box, Container } from "@mui/material";
 import Spinner from "../components/Spinner";
 // import Error from "../components/Error";
 import Cards from "../cards/Cards";
+import { Navigate } from "react-router-dom";
+import ROUTES from "../routes/routesModel";
+import { useUser } from "../users/providers/UserProvider";
 
 const FavoritesPage = () => {
   const { handleGetFavCards, value, handleDeleteCard } = useCards();
   const { cards, isLoading, error } = value;
+  const { user } = useUser();
 
   useEffect(() => {
     handleGetFavCards();
@@ -25,6 +29,8 @@ const FavoritesPage = () => {
     await handleGetFavCards();
   }, []);
 
+  if (!isLoading && !user) return <Navigate replace to={ROUTES.ROOT} />;
+
   return (
     <Container sx={{ mt: 2 }}>
       {isLoading && <Spinner />}
@@ -33,7 +39,7 @@ const FavoritesPage = () => {
         <p> there are no cards in the database that match the request</p>
       )}
 
-      {cards && !!cards.length && (
+      {!isLoading && cards && !!cards.length && (
         <Cards
           cards={cards}
           onDelete={onDeleteCard}

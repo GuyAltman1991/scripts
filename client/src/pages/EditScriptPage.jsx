@@ -21,7 +21,10 @@ const EditScriptPage = () => {
     initialScriptForm,
     createScriptSchema,
     () =>
-      handleUpdateCard(card._id, { ...normlizeScriptCard({ ...value.data }) })
+      handleUpdateCard(card._id, {
+        ...normlizeScriptCard({ ...value.data }),
+        user_id: card.user_id._id,
+      })
   );
   useEffect(() => {
     handleGetCard(id).then((data) => {
