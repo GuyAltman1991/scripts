@@ -1,20 +1,23 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useCards from "../cards/hooks/useCards";
-import { Box, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Spinner from "../components/Spinner";
 // import Error from "../components/Error";
 import Cards from "../cards/Cards";
 import { Navigate } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
 import { useUser } from "../users/providers/UserProvider";
+import useUsers from "../users/hooks/useUsers";
 
 const FavoritesPage = () => {
   const { handleGetFavCards, value, handleDeleteCard } = useCards();
   const { cards, isLoading, error } = value;
   const { user } = useUser();
+  const { handleGetUser, isLoading: userIsLoading } = useUsers();
 
   useEffect(() => {
     handleGetFavCards();
+    handleGetUser();
   }, []);
 
   const onDeleteCard = useCallback(
@@ -29,13 +32,13 @@ const FavoritesPage = () => {
     await handleGetFavCards();
   }, []);
 
-  if (!isLoading && !user) return <Navigate replace to={ROUTES.ROOT} />;
+  if (!userIsLoading && !user) return <Navigate replace to={ROUTES.ROOT} />;
 
   return (
     <Container sx={{ mt: 2 }}>
       {isLoading && <Spinner />}
       {error && console.log(error)}
-      {cards && !cards.length && (
+      {!user && cards && !cards.length && (
         <p> there are no cards in the database that match the request</p>
       )}
 

@@ -47,7 +47,6 @@ const useCards = () => {
       setLoading(true);
       const card = await getCard(cardId);
       requestStatus(false, null, null, card);
-      console.log(card);
     } catch (error) {
       requestStatus(false, error, null);
     }
@@ -68,9 +67,11 @@ const useCards = () => {
       setLoading(true);
 
       const cards = await getCards();
-      const favCards = cards.filter(
+
+      const favCards = await cards.filter(
         (card) => !!card.likes.find((_id) => _id === user._id)
       );
+
       requestStatus(false, null, favCards, null);
     } catch (error) {
       requestStatus(false, error, null);
@@ -126,6 +127,7 @@ const useCards = () => {
   }, [isLoading, cards, card, error]);
 
   return {
+    setLoading,
     value,
     handleGetCards,
     handleGetCard,

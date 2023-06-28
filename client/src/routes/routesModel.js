@@ -5,7 +5,7 @@ const ROUTES = {
   SIGNUP: "/signup",
   PROFILE: "/profile",
   SCRIPTS: "/scripts",
-  FAVORITES: "/favotires",
+  FAVORITES: "/favorites",
   WORTH_READING: "/worth_reading",
   MY_CONNECTIONS: "/my_connections",
   MY_SCRIPTS: "/my_scripts",

@@ -30,7 +30,10 @@ const Router = () => {
       <Route path={ROUTES.MY_SCRIPTS} element={<MyScriptsPage />} />
       <Route path={`${ROUTES.SCRIPT_PAGE}/:cardId`} element={<ScriptPage />} />
       <Route path={ROUTES.CREATE_SCRIPT_PAGE} element={<CreateScriptPage />} />
-      <Route path={`${ROUTES.EDIT_SCRIPT}/:id`} element={<EditScriptPage />} />
+      <Route
+        path={`${ROUTES.EDIT_SCRIPT}/:cardId`}
+        element={<EditScriptPage />}
+      />
     </Routes>
   );
 };

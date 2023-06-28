@@ -86,7 +86,7 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
         {user && (user.isAdmin || user._id === cardUserId) && (
           <IconButton
             aria-label="edit project"
-            onClick={() => navigate(`${ROUTES.EDIT_SCRIPT}/${user._id}`)}
+            onClick={() => navigate(`${ROUTES.EDIT_SCRIPT}/${cardId}`)}
           >
             <EditIcon />
           </IconButton>
