@@ -28,16 +28,24 @@ const EditScriptPage = () => {
   const navigate = useNavigate();
 
   console.log(card);
-  console.log(user._id);
 
   useEffect(() => {
     handleGetUser();
-    handleGetCard(cardId).then((data) => {
-      console.log(data);
-      if (user._id !== data.user_id._id) navigate(ROUTES.ROOT);
-      const modeledCard = mapToCardModel(data);
-      rest.setData(modeledCard);
-    });
+    const fetchData = async () => {
+      try {
+        const data = await handleGetCard(cardId);
+        return console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+    // .then((data) => {
+    //   console.log(data);
+    //   if (user._id !== data.user_id._id) navigate(ROUTES.ROOT);
+    //   const modeledCard = mapToCardModel(data);
+    //   rest.setData(modeledCard);
+    // });
   }, []);
 
   const { value, ...rest } = useForm(
@@ -46,7 +54,8 @@ const EditScriptPage = () => {
     () => {
       handleUpdateCard(card._id, {
         ...normlizeScriptCard({ ...value.data }),
-        user_id: card.user_id._id,
+        bizNumber: card.bizNumber,
+        user_id: card.user_id,
       });
     }
   );
