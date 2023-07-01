@@ -39,9 +39,13 @@ export const createCard = async (card) => {
   }
 };
 
-export const editCard = async (card) => {
+export const editCard = async (cardId, cardFromClient) => {
   try {
-    const { data } = axios.put(`${apiUrl}/cards`, card);
+    const { data } = await axios.put(
+      `${apiUrl}/cards/${cardId}`,
+      cardFromClient
+    );
+
     return data;
   } catch (error) {
     return Promise.reject(error.message);

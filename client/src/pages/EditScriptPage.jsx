@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../users/providers/UserProvider";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
@@ -28,7 +28,6 @@ const EditScriptPage = () => {
   const navigate = useNavigate();
 
   console.log(card);
-
   useEffect(() => {
     handleGetUser();
     const fetchData = async () => {
@@ -39,13 +38,12 @@ const EditScriptPage = () => {
         console.log(error);
       }
     };
-    fetchData();
-    // .then((data) => {
-    //   console.log(data);
-    //   if (user._id !== data.user_id._id) navigate(ROUTES.ROOT);
-    //   const modeledCard = mapToCardModel(data);
-    //   rest.setData(modeledCard);
-    // });
+    fetchData().then((data) => {
+      console.log(data);
+      if (user._id !== data.user_id._id) navigate(ROUTES.ROOT);
+      const modeledCard = mapToCardModel(data);
+      rest.setData(modeledCard);
+    });
   }, []);
 
   const { value, ...rest } = useForm(
