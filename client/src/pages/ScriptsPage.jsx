@@ -9,7 +9,7 @@ import useCards from "../cards/hooks/useCards";
 
 const ScriptsPage = ({ onDelete }) => {
   const { value, handleGetCards, handleDeleteCard } = useCards();
-  const { isLoading, error, cards } = value;
+  const { isLoading, error, cards, filteredCards } = value;
   useEffect(() => {
     handleGetCards();
   }, []);
@@ -32,8 +32,8 @@ const ScriptsPage = ({ onDelete }) => {
         {cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
         )}
-        {cards && !!cards.length && (
-          <Cards cards={cards} onDelete={onDeleteCard} />
+        {cards && filteredCards && !!cards.length && (
+          <Cards cards={filteredCards} onDelete={onDeleteCard} />
         )}
       </Container>
     </>

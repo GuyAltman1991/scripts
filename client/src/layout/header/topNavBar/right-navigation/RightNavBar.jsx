@@ -7,6 +7,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useUser } from "../../../../users/providers/UserProvider";
 import Dashboard from "../../../../components/Dashboard";
+import SearchBar from "../../../../components/SearchBar";
 
 const RightNavBar = () => {
   const { user } = useUser();
@@ -14,6 +15,7 @@ const RightNavBar = () => {
 
   return (
     <>
+      <SearchBar />
       <IconButton sx={{ marginLeft: 1 }} onClick={toggleDarkMode}>
         {isDark ? <LightModeIcon /> : <DarkModeIcon />}
       </IconButton>

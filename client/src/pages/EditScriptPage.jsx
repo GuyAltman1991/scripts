@@ -20,6 +20,8 @@ const EditScriptPage = () => {
     handleUpdateCard,
     handleGetCard,
     value: { card },
+    isLoading,
+    error,
   } = useCards();
 
   const { handleGetUser, isLoading: userIsLoading } = useUsers();
@@ -28,6 +30,17 @@ const EditScriptPage = () => {
   const navigate = useNavigate();
 
   console.log(card);
+  const { value, ...rest } = useForm(
+    initialScriptForm,
+    createScriptSchema,
+    () => {
+      handleUpdateCard(card._id, {
+        ...normlizeScriptCard({ ...value.data }),
+        user_id: card.user_id,
+      });
+    }
+  );
+
   useEffect(() => {
     handleGetUser();
     const fetchData = async () => {
@@ -46,26 +59,16 @@ const EditScriptPage = () => {
     });
   }, []);
 
-  const { value, ...rest } = useForm(
-    initialScriptForm,
-    createScriptSchema,
-    () => {
-      handleUpdateCard(card._id, {
-        ...normlizeScriptCard({ ...value.data }),
-        bizNumber: card.bizNumber,
-        user_id: card.user_id,
-      });
-    }
-  );
-
   if (!user) return <Navigate replace to={ROUTES.ROOT} />;
   return (
     <Container>
+      {isLoading && !card && <Spinner />}
+      {error && <Error errorMessage={error} />}
       <Box sx={{ mt: -2 }}>
-        {!user && card && (
+        {!card && (
           <p> there is no card in the database that match the request</p>
         )}
-        {!userIsLoading && card && (
+        {!isLoading && !userIsLoading && card && (
           <Form
             title="Edit Card"
             to={ROUTES.MY_SCRIPTS}

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   changeLikeStatus,
   createCard,
@@ -9,7 +9,7 @@ import {
   getMyCards,
 } from "../service/cardApiService";
 import normlizeScriptCard from "../helpers/normlizeScriptCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useAxios from "../../hooks/useAxios";
 import { useUser } from "../../users/providers/UserProvider";
@@ -19,11 +19,35 @@ const useCards = () => {
   const { user } = useUser();
   const [cards, setCards] = useState(null);
   const [card, setCard] = useState(null);
+  const [query, setQuery] = useState("");
   const [isLoading, setLoading] = useState(null);
   const [error, setError] = useState(null);
+  const [filteredCards, setFilter] = useState(null);
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const snack = useSnackbar();
+  // const snack = useSnackbar();
   useAxios();
+
+  useEffect(() => {
+    setQuery(searchParams.get("q") ?? "");
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (cards) {
+      setFilter(
+        cards.filter(
+          (card) =>
+            card.title.includes(query) ||
+            String(card.genre).includes(query) ||
+            String(card.language).includes(query) ||
+            String(card.length).includes(query) ||
+            String(card.user_id.email).includes(query) ||
+            String(card.user_id.name.firtName).includes(query) ||
+            String(card.user_id.name.lastName).includes(query)
+        )
+      );
+    }
+  }, [cards, query]);
 
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setLoading(loading);
@@ -124,8 +148,8 @@ const useCards = () => {
   };
 
   const value = useMemo(() => {
-    return { isLoading, cards, card, error };
-  }, [isLoading, cards, card, error]);
+    return { isLoading, cards, card, error, filteredCards };
+  }, [isLoading, cards, card, error, filteredCards]);
 
   return {
     setLoading,

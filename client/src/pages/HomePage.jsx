@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner";
 
 const HomePage = () => {
   const { isLoading, handleGetCards, handleDeleteCard, value } = useCards();
-  const { error, cards } = value;
+  const { error, cards, filteredCards } = value;
 
   const onDeletCard = async (cardId) => {
     await handleDeleteCard(cardId);
@@ -55,8 +55,8 @@ const HomePage = () => {
         {cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
         )}
-        {cards && !!cards.length && (
-          <Cards onDelete={onDeletCard} cards={cards} />
+        {cards && filteredCards && !!cards.length && (
+          <Cards onDelete={onDeletCard} cards={filteredCards} />
         )}
       </Container>
     </>
