@@ -18,3 +18,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.wavy_underline {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+}

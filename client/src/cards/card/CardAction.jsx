@@ -83,7 +83,7 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
             <DeleteIcon />
           </IconButton>
         )}
-        {user && (user.isAdmin || user._id === cardUserId) && (
+        {user && user._id === cardUserId && (
           <IconButton
             aria-label="edit project"
             onClick={() => navigate(`${ROUTES.EDIT_SCRIPT}/${cardId}`)}

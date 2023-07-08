@@ -24,10 +24,55 @@ const CardBody = ({ card }) => {
           color="text.secondary"
           gutterBottom
         >
-          {card.title}
+          <span
+            style={{
+              textDecorationLine: "underline",
+              textShadow: "#FC0 1px 0 10px",
+            }}
+          >
+            Script Name:
+          </span>{" "}
+          <span
+            style={{
+              fontFamily: "cursive",
+            }}
+          >
+            {card.title}
+          </span>{" "}
         </Typography>
         <Typography variant="h5" component="div">
-          {card.genre} - {card.length}
+          <span
+            style={{
+              textDecorationLine: "underline",
+              textShadow: "#FC0 1px 0 10px",
+            }}
+          >
+            Script Genre:
+          </span>{" "}
+          <span
+            style={{
+              fontFamily: "cursive",
+            }}
+          >
+            {card.genre}
+          </span>{" "}
+        </Typography>
+        <Typography>
+          <span
+            style={{
+              textDecorationLine: "underline",
+              textShadow: "#FC0 1px 0 10px",
+            }}
+          >
+            Script Length:
+          </span>{" "}
+          <span
+            style={{
+              fontFamily: "cursive",
+            }}
+          >
+            {card.length}
+          </span>{" "}
         </Typography>
         <Typography
           variant="body2"
@@ -35,7 +80,14 @@ const CardBody = ({ card }) => {
         >
           <Typography variant="span" sx={{ fontSize: 15, fontWeight: "bold" }}>
             {" "}
-            Synopsis:{" "}
+            <span
+              style={{
+                textDecorationLine: "underline",
+                textShadow: "#FC0 1px 0 10px",
+              }}
+            >
+              Synopsis:
+            </span>{" "}
           </Typography>
           {card.synopsis}
         </Typography>

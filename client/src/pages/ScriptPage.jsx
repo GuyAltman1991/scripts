@@ -1,4 +1,4 @@
-import { Avatar, Box, Container, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import BasicTabs from "../components/BasicTabs";
 import useCards from "../cards/hooks/useCards";
@@ -33,11 +33,13 @@ const ScriptPage = () => {
             <Avatar src={card.user_id.imageUrl} alt="profile image" />
             <Typography>{card.user_id.email}</Typography>
           </Stack>
-          <BasicTabs
-            synopsis={card.synopsis}
-            treatment={card.script_treatment}
-            fullScript={card.fullScript}
-          />
+          <Container>
+            <BasicTabs
+              synopsis={card.synopsis}
+              treatment={card.script_treatment}
+              fullScript={card.fullScript}
+            />
+          </Container>
         </Box>
       )}
     </Container>

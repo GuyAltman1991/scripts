@@ -30,6 +30,7 @@ const EditScriptPage = () => {
   const navigate = useNavigate();
 
   console.log(card);
+
   const { value, ...rest } = useForm(
     initialScriptForm,
     createScriptSchema,
@@ -59,35 +60,37 @@ const EditScriptPage = () => {
     });
   }, []);
 
-  if (!user) return <Navigate replace to={ROUTES.ROOT} />;
+  if (!user && !card) return <Navigate replace to={ROUTES.ROOT} />;
+
   return (
-    <Container>
-      {isLoading && !card && <Spinner />}
+    <>
+      {!card && isLoading && <Spinner />}{" "}
       {error && <Error errorMessage={error} />}
-      <Box sx={{ mt: -2 }}>
-        {!card && (
-          <p> there is no card in the database that match the request</p>
-        )}
-        {!isLoading && !userIsLoading && card && (
-          <Form
-            title="Edit Card"
-            to={ROUTES.MY_SCRIPTS}
-            onChange={rest.validateForm}
-            onReset={rest.handleReset}
-            onSubmit={rest.onSubmit}
-            errors={value.errors}
-          >
-            {" "}
-            <Typography sx={{ ml: 1 }}> EDIT YOUR SCRIPT</Typography>
-            <Input
-              data={value.data}
-              lable="title"
-              name="title"
-              onChange={rest.handleChange}
-              required={true}
-              type="text"
-            />
-            {/* <SelectOption
+      <Container>
+        <Box sx={{ mt: -2 }}>
+          {!card && (
+            <p> there is no card in the database that match the request</p>
+          )}
+          {!isLoading && !userIsLoading && card && (
+            <Form
+              title="Edit Card"
+              to={ROUTES.MY_SCRIPTS}
+              onChange={rest.validateForm}
+              onReset={rest.handleReset}
+              onSubmit={rest.onSubmit}
+              errors={value.errors}
+            >
+              {" "}
+              <Typography sx={{ ml: 1 }}> EDIT YOUR SCRIPT</Typography>
+              <Input
+                data={value.data}
+                lable="title"
+                name="title"
+                onChange={rest.handleChange}
+                required={true}
+                type="text"
+              />
+              {/* <SelectOption
         lable={"genre"}
         options={movieCategories}
         onChange={rest.handleChange}
@@ -101,62 +104,63 @@ const EditScriptPage = () => {
         onChange={rest.handleChange}
         data={value.data}
       /> */}
-            <Input
-              data={value.data}
-              lable="genre"
-              name="genre"
-              onChange={rest.handleChange}
-              required={true}
-            />
-            <Input
-              data={value.data}
-              lable="length"
-              name="length"
-              onChange={rest.handleChange}
-              required={true}
-            />
-            <Input
-              data={value.data}
-              lable="language"
-              name="language"
-              onChange={rest.handleChange}
-              required={true}
-            />
-            <Input
-              data={value.data}
-              lable="another Screen writer"
-              name="anotherScreenwriter"
-              onChange={rest.handleChange}
-              required={false}
-            />
-            <Input
-              minRows={12}
-              lable="Synopsis"
-              required={true}
-              data={value.data}
-              name="synopsis"
-              onChange={rest.handleChange}
-            />
-            <Input
-              minRows={16}
-              lable="script treatment"
-              required={false}
-              data={value.data}
-              name="script_treatment"
-              onChange={rest.handleChange}
-            />
-            <Input
-              minRows={20}
-              lable="full Script"
-              required={false}
-              data={value.data}
-              name="fullScript"
-              onChange={rest.handleChange}
-            />
-          </Form>
-        )}
-      </Box>
-    </Container>
+              <Input
+                data={value.data}
+                lable="genre"
+                name="genre"
+                onChange={rest.handleChange}
+                required={true}
+              />
+              <Input
+                data={value.data}
+                lable="length"
+                name="length"
+                onChange={rest.handleChange}
+                required={true}
+              />
+              <Input
+                data={value.data}
+                lable="language"
+                name="language"
+                onChange={rest.handleChange}
+                required={true}
+              />
+              <Input
+                data={value.data}
+                lable="another Screen writer"
+                name="anotherScreenwriter"
+                onChange={rest.handleChange}
+                required={false}
+              />
+              <Input
+                minRows={12}
+                lable="Synopsis"
+                required={true}
+                data={value.data}
+                name="synopsis"
+                onChange={rest.handleChange}
+              />
+              <Input
+                minRows={16}
+                lable="script treatment"
+                required={false}
+                data={value.data}
+                name="script_treatment"
+                onChange={rest.handleChange}
+              />
+              <Input
+                minRows={20}
+                lable="full Script"
+                required={false}
+                data={value.data}
+                name="fullScript"
+                onChange={rest.handleChange}
+              />
+            </Form>
+          )}
+        </Box>
+      </Container>
+    </>
   );
 };
 
