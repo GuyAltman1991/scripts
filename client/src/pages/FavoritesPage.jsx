@@ -16,8 +16,8 @@ const FavoritesPage = () => {
   const { handleGetUser, isLoading: userIsLoading } = useUsers();
 
   useEffect(() => {
-    handleGetFavCards();
     handleGetUser();
+    handleGetFavCards();
   }, []);
 
   const onDeleteCard = useCallback(
@@ -33,6 +33,14 @@ const FavoritesPage = () => {
   }, []);
 
   if (!userIsLoading && !user) return <Navigate replace to={ROUTES.ROOT} />;
+
+  console.log(
+    user,
+    cards,
+    isLoading,
+    !user && cards && !cards.length,
+    !isLoading && cards && !!cards.length
+  );
 
   return (
     <Container sx={{ mt: 2 }}>

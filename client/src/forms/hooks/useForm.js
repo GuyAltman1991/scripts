@@ -75,6 +75,7 @@ const useForm = (initialForm, schema, handleSubmit) => {
     handleChange,
     handleReset,
     validateForm,
+    setData,
   };
 };
 

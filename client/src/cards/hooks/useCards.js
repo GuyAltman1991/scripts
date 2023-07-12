@@ -90,9 +90,7 @@ const useCards = () => {
   const handleGetFavCards = useCallback(async () => {
     try {
       setLoading(true);
-
       const cards = await getCards();
-
       const favCards = await cards.filter(
         (card) => !!card.likes.find((_id) => _id === user._id)
       );

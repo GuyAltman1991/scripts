@@ -5,17 +5,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { useUser } from "../providers/UserProvider";
-
+import EditIcon from "@mui/icons-material/Edit";
 import useUsers from "../hooks/useUsers";
 import Spinner from "../../components/Spinner";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 
 const ProfilePage = () => {
   const { handleGetUser, isLoading, error } = useUsers();
-
+  const navigate = useNavigate();
   const { user } = useUser();
   useEffect(() => {
     handleGetUser();
@@ -54,8 +54,14 @@ const ProfilePage = () => {
             </Typography>
           </CardContent>
           <CardActions>
-            {/* <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button> */}
+            {user && (
+              <IconButton
+                aria-label="edit user"
+                // onClick={() => navigate(`${ROUTES.EDIT_SCRIPT}/${userId}`)}
+              >
+                <EditIcon />
+              </IconButton>
+            )}
           </CardActions>
         </Card>
       )}

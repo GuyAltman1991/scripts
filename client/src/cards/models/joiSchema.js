@@ -9,6 +9,11 @@ const createScriptSchema = {
   anotherScreenwriter: Joi.string().allow(""),
   script_treatment: Joi.string().allow(),
   fullScript: Joi.string().allow(),
+  user_id: Joi.string().allow(""),
+  userFirstName: Joi.string().allow(""),
+  userLastName: Joi.string().allow(""),
+  userImage: Joi.string().allow(""),
+  userEmail: Joi.string().allow(""),
 };
 
 export default createScriptSchema;

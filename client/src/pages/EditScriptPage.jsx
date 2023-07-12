@@ -14,22 +14,23 @@ import Input from "../forms/compnents/Input";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useUsers from "../users/hooks/useUsers";
+import { dark } from "@mui/material/styles/createPalette";
+import axios from "axios";
 
 const EditScriptPage = () => {
   const {
     handleUpdateCard,
     handleGetCard,
-    value: { card },
+    value: cardValue,
     isLoading,
     error,
   } = useCards();
+  const { card } = cardValue;
 
   const { handleGetUser, isLoading: userIsLoading } = useUsers();
   const { cardId } = useParams();
   const { user } = useUser();
   const navigate = useNavigate();
-
-  console.log(card);
 
   const { value, ...rest } = useForm(
     initialScriptForm,
@@ -43,23 +44,15 @@ const EditScriptPage = () => {
   );
 
   useEffect(() => {
-    handleGetUser();
-    const fetchData = async () => {
-      try {
-        const data = await handleGetCard(cardId);
-        return console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData().then((data) => {
-      console.log(data);
-      if (user._id !== data.user_id._id) navigate(ROUTES.ROOT);
+    axios.get("http://localhost:8181/cards/" + cardId).then((data) => {
+      data = data.data;
+
       const modeledCard = mapToCardModel(data);
+      console.log(modeledCard);
       rest.setData(modeledCard);
     });
+    handleGetCard(cardId);
   }, []);
-
   if (!user && !card) return <Navigate replace to={ROUTES.ROOT} />;
 
   return (
@@ -69,11 +62,11 @@ const EditScriptPage = () => {
       <Container>
         <Box sx={{ mt: -2 }}>
           {!card && (
-            <p> there is no card in the database that match the request</p>
+            <p> there is no script in the database that match the request</p>
           )}
-          {!isLoading && !userIsLoading && card && (
+          {!isLoading && card && (
             <Form
-              title="Edit Card"
+              title="Edit Script"
               to={ROUTES.MY_SCRIPTS}
               onChange={rest.validateForm}
               onReset={rest.handleReset}
