@@ -12,19 +12,19 @@ import createScriptSchema from "../cards/models/joiSchema";
 import useCards from "../cards/hooks/useCards";
 import SelectOption from "../forms/compnents/SelectOption";
 
-const movieCategories = [
-  "comedy",
-  "drama",
-  "horror",
-  "Action",
-  "Fantasy",
-  "Mystery",
-  "Romance",
-  "Thriller",
-  "Other",
-];
+// const movieCategories = [
+//   "comedy",
+//   "drama",
+//   "horror",
+//   "Action",
+//   "Fantasy",
+//   "Mystery",
+//   "Romance",
+//   "Thriller",
+//   "Other",
+// ];
 
-const lengthOptions = ["Short", "Long", "Series", "Web Series"];
+// const lengthOptions = ["Short", "Long", "Series", "Web Series"];
 
 const CreateScriptPage = () => {
   const { user } = useUser();
@@ -34,7 +34,7 @@ const CreateScriptPage = () => {
     createScriptSchema,
     handleCreateCard
   );
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   if (!user) return <Navigate replace to={ROUTES.SCRIPTS} />;
 
@@ -46,6 +46,7 @@ const CreateScriptPage = () => {
           onReset={rest.handleReset}
           onSubmit={rest.onSubmit}
           errors={value.errors}
+          to={ROUTES.MY_SCRIPTS}
         >
           {" "}
           <Typography sx={{ ml: 1 }}> CREATE YOUR SCRIPT</Typography>

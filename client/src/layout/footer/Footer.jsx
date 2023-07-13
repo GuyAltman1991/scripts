@@ -42,10 +42,10 @@ const Footer = () => {
           />
 
           <BottomNavigationAction
-            label="worth reading"
-            value="worth reading"
+            label="My Scripts"
+            value="my scripts"
             icon={<FolderIcon />}
-            onClick={() => navigate(ROUTES.WORTH_READING)}
+            onClick={() => navigate(ROUTES.MY_SCRIPTS)}
           />
           <BottomNavigationAction
             label="My Connections"

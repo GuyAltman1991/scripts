@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useCards from "../cards/hooks/useCards";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Spinner from "../components/Spinner";
 // import Error from "../components/Error";
 import Cards from "../cards/Cards";
@@ -43,21 +43,27 @@ const FavoritesPage = () => {
   );
 
   return (
-    <Container sx={{ mt: 2 }}>
-      {isLoading && <Spinner />}
-      {error && console.log(error)}
-      {!user && cards && !cards.length && (
-        <p> there are no cards in the database that match the request</p>
-      )}
+    <>
+      <Container sx={{ mt: 2 }}>
+        <Typography sx={{ mt: -2 }} variant="h2" color="initial">
+          MY FAVORITES SCRIPTS
+        </Typography>
 
-      {!isLoading && cards && !!cards.length && (
-        <Cards
-          cards={cards}
-          onDelete={onDeleteCard}
-          onLike={changeLikeStatus}
-        />
-      )}
-    </Container>
+        {isLoading && <Spinner />}
+        {error && console.log(error)}
+        {!user && cards && !cards.length && (
+          <p> there are no cards in the database that match the request</p>
+        )}
+
+        {!isLoading && cards && !!cards.length && (
+          <Cards
+            cards={cards}
+            onDelete={onDeleteCard}
+            onLike={changeLikeStatus}
+          />
+        )}
+      </Container>
+    </>
   );
 };
 

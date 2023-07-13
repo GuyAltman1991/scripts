@@ -6,6 +6,7 @@ import {
   SpeedDial,
   SpeedDialAction,
   SpeedDialIcon,
+  Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
@@ -67,6 +68,9 @@ const MyScriptsPage = () => {
   return (
     <>
       {" "}
+      <Typography variant="h2" color="initial">
+        MY SCRIPTS
+      </Typography>
       <StyledSpeedDial
         sx={{ position: "sticky" }}
         ariaLabel="SpeedDial playground example"

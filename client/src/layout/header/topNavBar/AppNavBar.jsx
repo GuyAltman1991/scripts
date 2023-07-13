@@ -24,18 +24,24 @@ const AppNavBar = () => {
               src="https://cdn.pixabay.com/photo/2013/07/12/13/22/writing-146913__340.png"
             />
           </NavBarLink>
-
-          <NavItem label="about" to={ROUTES.ABOUT} />
-          {user && <NavItem label="my scripts" to={ROUTES.MY_SCRIPTS} />}
-          {user && <NavItem label="all scripts" to={ROUTES.SCRIPTS} />}
-          {user && <NavItem label="my favorites" to={ROUTES.FAVORITES} />}
+          <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+            <NavItem label="about" to={ROUTES.ABOUT} />
+          </Typography>
+          <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+            {user && <NavItem label="my scripts" to={ROUTES.MY_SCRIPTS} />}
+          </Typography>
+          <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+            {user && <NavItem label="all scripts" to={ROUTES.SCRIPTS} />}
+          </Typography>
+          <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+            {user && <NavItem label="my favorites" to={ROUTES.FAVORITES} />}
+          </Typography>
           <Typography
             variant="h6"
             component="div"
             sx={{ flexGrow: 1 }}
           ></Typography>
-
-          <RightNavBar />
+          <RightNavBar />{" "}
         </Toolbar>
       </AppBar>
     </Box>
