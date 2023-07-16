@@ -46,13 +46,12 @@ const EditScriptPage = () => {
   useEffect(() => {
     axios.get("http://localhost:8181/cards/" + cardId).then((data) => {
       data = data.data;
-
       const modeledCard = mapToCardModel(data);
-      console.log(modeledCard);
       rest.setData(modeledCard);
     });
     handleGetCard(cardId);
   }, []);
+
   if (!user && !card) return <Navigate replace to={ROUTES.ROOT} />;
 
   return (

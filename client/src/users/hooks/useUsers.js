@@ -2,7 +2,12 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../providers/UserProvider";
 import useAxios from "../../hooks/useAxios";
-import { getUserFromServer, login, signup } from "../services/usersApiService";
+import {
+  editUser,
+  getUserFromServer,
+  login,
+  signup,
+} from "../services/usersApiService";
 import {
   getUser,
   setTokenInLocalStorage,
@@ -73,6 +78,17 @@ const useUsers = () => {
     }
   };
 
+  const handleUpdateUser = async (userId, userFromClient) => {
+    try {
+      setLoading(true);
+      const user = await editUser(userId, userFromClient);
+      requestStatus(false, null, null, user);
+      navigate(ROUTES.ROOT);
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  };
+
   return {
     setLoading,
     isLoading,
@@ -82,6 +98,7 @@ const useUsers = () => {
     handleLogin,
     handleGetUser,
     handleSignUp,
+    handleUpdateUser,
   };
 };
 

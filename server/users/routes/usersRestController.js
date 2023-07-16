@@ -85,14 +85,17 @@ router.get("/:id", auth, async (req, res) => {
 
 router.put("/:id", auth, async (req, res) => {
   try {
-    const { _id, isAdmin } = req.user;
+    const { _id } = req.user;
     const userId = req.params.id;
     let user = req.body;
+    console.log(_id, userId);
 
-    if (_id !== userId && !isAdmin)
+    if (_id !== userId)
       throw new Error("only the user or admin can update the user details");
     user = normlizeUser(user);
+    console.log(user);
     user = await updateUser(userId, user);
+    console.log("user updates" + user);
     return res.send(user);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);

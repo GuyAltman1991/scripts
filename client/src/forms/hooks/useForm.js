@@ -7,6 +7,9 @@ const useForm = (initialForm, schema, handleSubmit) => {
   const [errors, setErrors] = useState({});
   // const [imageUrl, setImageUrl] = useState(null);
 
+  console.log(data);
+  console.log(errors);
+
   ////////////// Guy - for future use:///////////////////////
   // const handleFileUpload = async (event) => {
   //   const file = await event.target.files[0];

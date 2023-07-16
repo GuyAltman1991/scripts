@@ -29,7 +29,7 @@ const Dashboard = ({ src }) => {
 
   const handelGetMyProfile = () => {
     setAnchorEl(null);
-    navigate(`${ROUTES.PROFILE}/:${userId}`);
+    navigate(`${ROUTES.PROFILE}/${userId}`);
   };
 
   const handleLogOut = async () => {
