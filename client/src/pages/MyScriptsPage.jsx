@@ -52,7 +52,7 @@ const MyScriptsPage = () => {
   const { handleGetCards, handleGetMyCards, handleDeleteCard, value } =
     useCards();
 
-  const { isLoading, error, cards } = value;
+  const { isLoading, error, cards, filteredCards } = value;
 
   useEffect(() => {
     handleGetUser();
@@ -95,8 +95,8 @@ const MyScriptsPage = () => {
         {!user && cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
         )}
-        {!userIsLoading && cards && !!cards.length && (
-          <Cards onDelete={onDeletCard} cards={cards} />
+        {!userIsLoading && cards && filteredCards && !!cards.length && (
+          <Cards onDelete={onDeletCard} cards={filteredCards} />
         )}
       </Container>
     </>

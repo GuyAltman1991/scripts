@@ -11,7 +11,7 @@ import useUsers from "../users/hooks/useUsers";
 
 const FavoritesPage = () => {
   const { handleGetFavCards, value, handleDeleteCard } = useCards();
-  const { cards, isLoading, error } = value;
+  const { cards, isLoading, error, filteredCards } = value;
   const { user } = useUser();
   const { handleGetUser, isLoading: userIsLoading } = useUsers();
 
@@ -34,14 +34,6 @@ const FavoritesPage = () => {
 
   if (!userIsLoading && !user) return <Navigate replace to={ROUTES.ROOT} />;
 
-  console.log(
-    user,
-    cards,
-    isLoading,
-    !user && cards && !cards.length,
-    !isLoading && cards && !!cards.length
-  );
-
   return (
     <>
       <Container sx={{ mt: 2 }}>
@@ -55,9 +47,9 @@ const FavoritesPage = () => {
           <p> there are no cards in the database that match the request</p>
         )}
 
-        {!isLoading && cards && !!cards.length && (
+        {!isLoading && cards && !!cards.length && filteredCards && (
           <Cards
-            cards={cards}
+            cards={filteredCards}
             onDelete={onDeleteCard}
             onLike={changeLikeStatus}
           />
