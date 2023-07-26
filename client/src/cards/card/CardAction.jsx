@@ -1,4 +1,11 @@
-import { Button, CardActions, IconButton, Typography } from "@mui/material";
+import {
+  Button,
+  CardActions,
+  IconButton,
+  SpeedDial,
+  SpeedDialAction,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -10,6 +17,20 @@ import CardDeleteDialog from "./CardDeleteDialog";
 import useCards from "../hooks/useCards";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
+import ShareToSocialMedia from "../../components/ShareToSocialMedia";
+import { styled } from "@mui/material/styles";
+
+const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
+  position: "sticky",
+  "&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft": {
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+  "&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight": {
+    top: theme.spacing(2),
+    left: theme.spacing(2),
+  },
+}));
 
 export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
   const [isDialogOpen, setDialog] = useState(false);
@@ -53,12 +74,12 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
         >
           Read More
         </Button>
+
         <Typography
           variant="h6"
           component="div"
           sx={{ flexGrow: 1 }}
         ></Typography>
-
         <IconButton
           sx={{ color: isLike ? "red" : "" }}
           aria-label="add to favorites"
@@ -69,12 +90,7 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
         <IconButton aria-label="add to worth reading folder">
           <FolderIcon />
         </IconButton>
-        <IconButton
-          aria-label="share"
-          sx={{ "&:hover": { textAnchor: "green" } }}
-        >
-          <ShareIcon />
-        </IconButton>
+
         {user && (user.isAdmin || user._id === cardUserId) && (
           <IconButton
             aria-label="delete project"
@@ -91,6 +107,23 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
             <EditIcon />
           </IconButton>
         )}
+
+        {/* /* share */}
+        <StyledSpeedDial
+          sx={{ position: "sticky" }}
+          ariaLabel="SpeedDial playground example"
+          icon={<ShareIcon />}
+        >
+          <SpeedDialAction
+            icon={
+              <ShareToSocialMedia
+                url={`http://localhost:3000${ROUTES.SCRIPT_PAGE}/${cardId}`}
+              />
+            }
+          />
+        </StyledSpeedDial>
+
+        {/* ########################### */}
       </CardActions>
 
       <CardDeleteDialog

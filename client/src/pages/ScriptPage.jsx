@@ -5,6 +5,9 @@ import useCards from "../cards/hooks/useCards";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
+import ShareToSocialMedia from "../components/ShareToSocialMedia";
+
+const url = window.location.href;
 
 const ScriptPage = () => {
   const id = useParams();
@@ -28,6 +31,10 @@ const ScriptPage = () => {
           <Typography variant="h2">{card.title}</Typography>
           <Typography sx={{ color: "GrayText" }} variant="h6">
             {card.genre} | {card.length}
+          </Typography>{" "}
+          <Typography mt={1}>
+            {" "}
+            <ShareToSocialMedia url={url} />
           </Typography>
           <Stack direction="row" spacing={2}>
             <Avatar src={card.user_id.imageUrl} alt="profile image" />
