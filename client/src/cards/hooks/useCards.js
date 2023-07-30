@@ -22,6 +22,7 @@ const useCards = () => {
   const [query, setQuery] = useState("");
   const [isLoading, setLoading] = useState(null);
   const [error, setError] = useState(null);
+  const [isLike, setLike] = useState(null);
   const [filteredCards, setFilter] = useState(null);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -138,6 +139,7 @@ const useCards = () => {
     try {
       setLoading(true);
       const card = await changeLikeStatus(cardId);
+      setLike((prev) => !prev);
       const cards = await getCards();
       requestStatus(false, null, cards, card);
     } catch (error) {
@@ -151,6 +153,7 @@ const useCards = () => {
 
   return {
     setLoading,
+    isLike,
     value,
     handleGetCards,
     handleGetCard,

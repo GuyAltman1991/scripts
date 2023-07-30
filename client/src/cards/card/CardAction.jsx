@@ -34,12 +34,17 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
 
 export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
   const [isDialogOpen, setDialog] = useState(false);
-  const [isLike, setLike] = useState(null);
-  const { user } = useUser();
-  const navigate = useNavigate();
-
   const { handleGetCards, handleLikeCard, value } = useCards();
-  const { cards } = value;
+  const { cards, card } = value;
+  const { user } = useUser();
+  const [isLike, setLike] = useState(
+    null
+    // () => {
+    // if (!user) return false;
+    // return !!card.likes.find((id) => id === user._id);
+    // }
+  );
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleGetCards();
@@ -60,8 +65,8 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
   };
 
   const handleLike = async () => {
-    setLike((prev) => !prev);
     await handleLikeCard(cardId);
+    setLike((prev) => !prev);
     // onLike();
   };
 
@@ -80,13 +85,15 @@ export const CardAction = ({ cardUserId, cardId, onDelete, onLike }) => {
           component="div"
           sx={{ flexGrow: 1 }}
         ></Typography>
-        <IconButton
-          sx={{ color: isLike ? "red" : "" }}
-          aria-label="add to favorites"
-          onClick={handleLike}
-        >
-          <FavoriteIcon />
+
+        <IconButton aria-label="add to favorites" onClick={handleLike}>
+          <FavoriteIcon
+            sx={{
+              color: isLike ? "red" : "",
+            }}
+          />
         </IconButton>
+
         <IconButton aria-label="add to worth reading folder">
           <FolderIcon />
         </IconButton>
