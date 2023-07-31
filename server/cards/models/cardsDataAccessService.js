@@ -1,5 +1,6 @@
 const Card = require("../models/mongodb/Card");
 var mongoose = require("mongoose");
+const { ObjectId } = require("mongodb");
 
 const DB = process.env.DB || "MONGODB";
 
@@ -101,6 +102,17 @@ const deleteCard = async (cardId, user) => {
   return Promise.resolve("not in mongodb");
 };
 
+const deleteAllUserCards = async (userId) => {
+  if (DB === "MONGODB") {
+    try {
+      let userCards = await Card.findOneAndRemove({ user_id: userId });
+
+      return Promise.resolve(userCards);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+};
 const likeCard = async (cardId, userId) => {
   if (DB === "MONGODB") {
     try {
@@ -134,4 +146,5 @@ exports.getMyCards = getMyCards;
 exports.createCard = createCard;
 exports.updateCard = updateCard;
 exports.deleteCard = deleteCard;
+exports.deleteAllUserCards = deleteAllUserCards;
 exports.likeCard = likeCard;

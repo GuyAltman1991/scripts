@@ -11,6 +11,9 @@ const {
 const { handleError } = require("../../utils/errorHandler");
 const loginValidation = require("../validation/loginValidation");
 const auth = require("../../auth/authService");
+const {
+  deleteAllUserCards,
+} = require("../../cards/models/cardsDataAccessService");
 
 const router = express.Router();
 
@@ -106,11 +109,13 @@ router.delete("/:id", auth, async (req, res) => {
   try {
     const { _id, isAdmin } = req.user;
     const userId = req.params.id;
-
     if (_id !== userId && !isAdmin)
       throw new Error(
         "only the user who create the profile or an admin user can delete the user"
       );
+
+    // await deleteAllUserCards(userId);
+
     const user = await deleteUser(userId);
     return res.send(user);
   } catch (error) {
