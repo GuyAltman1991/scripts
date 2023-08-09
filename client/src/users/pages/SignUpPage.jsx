@@ -85,23 +85,23 @@ const SignUpPage = () => {
           onChange={rest.handleChange}
           data={value.data}
         />
-        <Input
+        {/* <Input
           type="text"
           lable="imageUrl"
           name="imageUrl"
           error={value.errors.imageUrl}
           onChange={rest.handleChange}
           data={value.data}
-        />
+        /> */}
 
         {/* for future use:  */}
-        {/* <ImageUpload
+        <ImageUpload
           onChange={rest.handleChange}
           data={value.data}
           name="imageUrl"
           imageUrl={value.data.imageUrl}
           error={value.errors.imageUrl}
-        /> */}
+        />
       </Form>
     </Container>
   );

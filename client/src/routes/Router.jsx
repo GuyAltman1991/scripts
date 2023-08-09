@@ -14,6 +14,7 @@ import CreateScriptPage from "../pages/CreateScriptPage";
 import ScriptPage from "../pages/ScriptPage";
 import ProfilePage from "../users/pages/ProfilePage";
 import EditScriptPage from "../pages/EditScriptPage";
+import UploadImagePage from "../users/pages/UploadImagePage";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
       <Route path={ROUTES.SCRIPTS} element={<ScriptsPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignUpPage />} />
+      <Route path={ROUTES.UPLOADIMAGE} element={<UploadImagePage />} />
       <Route path={`${ROUTES.PROFILE}/:userId`} element={<ProfilePage />} />
       <Route path={ROUTES.FAVORITES} element={<FavoritesPage />} />
       <Route path={ROUTES.WORTH_READING} element={<WorthReadingPage />} />

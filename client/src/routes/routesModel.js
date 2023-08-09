@@ -3,6 +3,7 @@ const ROUTES = {
   ABOUT: "/about",
   LOGIN: "/login",
   SIGNUP: "/signup",
+  UPLOADIMAGE: "upload_image",
   PROFILE: "/profile",
   SCRIPTS: "/scripts",
   FAVORITES: "/favorites",

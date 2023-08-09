@@ -48,13 +48,17 @@ app.use(router);
 // });
 
 // ========== ///
-
+app.set("view engine", "ejs");
 app.use((err, req, res, next) => {
   handleError(res, 500, err.message);
 });
 
 app.get("/", (req, res) => {
   res.send("in guy app");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 const PORT = config.get("PORT");

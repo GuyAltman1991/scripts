@@ -6,6 +6,7 @@ import {
   editUser,
   getUserFromServer,
   login,
+  loginWithGoogle,
   signup,
 } from "../services/usersApiService";
 import {
@@ -14,6 +15,7 @@ import {
 } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
 import normlizeUser from "../helpers/normlizeUser";
+import normlizeUserFromGoogle from "../helpers/normlizeUserFromGoogle";
 
 const useUsers = () => {
   const [users, setUsers] = useState(null);
@@ -22,7 +24,7 @@ const useUsers = () => {
   const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();
   useAxios();
-
+  console.log(user);
   const requestStatus = useCallback(
     (loading, errorMessage, users, user = null) => {
       setLoading(loading);
@@ -37,7 +39,6 @@ const useUsers = () => {
     async (user) => {
       try {
         const token = await login(user);
-
         setTokenInLocalStorage(token);
         setToken(token);
         const userFromLocalStorage = getUser();
