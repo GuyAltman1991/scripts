@@ -120,7 +120,7 @@ const EditScriptPage = () => {
               <Input
                 data={value.data}
                 lable="another Screen writer"
-                name="anotherScreenwriter"
+                name="screenwriter"
                 onChange={rest.handleChange}
                 required={false}
               />

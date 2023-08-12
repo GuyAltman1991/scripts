@@ -5,7 +5,7 @@ const mergCardWithUser = async (card, user) => {
     length: card.length,
     language: card.language,
     synopsis: card.synopsis,
-    anotherScreenwriter: card.anotherScreenwriter,
+    screenwriter: card.screenwriter,
     script_treatment: card.script_treatment,
     fullScript: card.fullScript,
     firstName: user.name.firstName,

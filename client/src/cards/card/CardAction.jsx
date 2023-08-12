@@ -38,7 +38,6 @@ export const CardAction = ({ cardUserId, cardId, onDelete, cardLikes }) => {
   const { cards, card } = value;
   const { user } = useUser();
   const [isLike, setLike] = useState(null);
-  console.log(cardLikes);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,10 +49,6 @@ export const CardAction = ({ cardUserId, cardId, onDelete, cardLikes }) => {
     setDialog(false);
   };
 
-  // const handleEditCard = () => {
-  //   navigate(ROUTES.EDIT_SCRIPT);
-  //   console.log("edit");
-  // };
   const handleDelete = () => {
     handleDialog();
     onDelete(cardId);

@@ -5,7 +5,7 @@ const mapToCardModel = (card) => {
     length: card.length,
     language: card.language,
     synopsis: card.synopsis,
-    anotherScreenwriter: card.anotherScreenwriter,
+    screenwriter: card.screenwriter,
     script_treatment: card.script_treatment,
     fullScript: card.fullScript,
     user_id: card.user_id._id,

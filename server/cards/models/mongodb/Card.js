@@ -17,7 +17,7 @@ const CardSchema = new mongoose.Schema({
   },
   likes: [String],
   language: String,
-  anotherScreenwriter: String,
+  screenwriter: String,
 
   user_id: {
     type: mongoose.Schema.Types.ObjectId,

@@ -1,6 +1,6 @@
 import React from "react";
 import MuiCard from "@mui/material/Card";
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { func } from "prop-types";
 import { CardAction } from "./CardAction";
 import CardBody from "./CardBody";

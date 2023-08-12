@@ -9,6 +9,7 @@ const Input = ({
   name,
   data,
   lable,
+  placeholder,
   required,
   error,
   onChange,
@@ -25,6 +26,7 @@ const Input = ({
         type={type}
         id={name}
         name={name}
+        placeholder={placeholder}
         value={data[name] ? data[name] : ""}
         required={required}
         helperText={error}

@@ -38,7 +38,7 @@ function a11yProps(index) {
 
 export default function BasicTabs({ synopsis, treatment, fullScript }) {
   const [value, setValue] = React.useState(0);
-  // console.log(value);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

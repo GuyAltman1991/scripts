@@ -17,7 +17,6 @@ const ScriptPage = () => {
   useEffect(() => {
     handleGetCard(cardId);
   }, []);
-
   return (
     <Container>
       {isLoading && <Spinner />}
@@ -29,6 +28,8 @@ const ScriptPage = () => {
         <Box>
           {" "}
           <Typography variant="h2">{card.title}</Typography>
+          <Typography variant="h6"> {card.screenwriter}</Typography>
+          <Typography variant="h6"> {card.anotherScreenwriter}</Typography>
           <Typography sx={{ color: "GrayText" }} variant="h6">
             {card.genre} | {card.length}
           </Typography>{" "}

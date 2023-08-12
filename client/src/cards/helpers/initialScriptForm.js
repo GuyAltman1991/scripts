@@ -4,7 +4,7 @@ const initialScriptForm = {
   length: "",
   language: "",
   synopsis: "",
-  anotherScreenwriter: "",
+  screenwriter: "",
   script_treatment: "",
   fullScript: "",
 };

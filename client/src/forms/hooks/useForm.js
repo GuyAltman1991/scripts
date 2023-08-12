@@ -5,28 +5,11 @@ import { object, func } from "prop-types";
 const useForm = (initialForm, schema, handleSubmit) => {
   const [data, setData] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  // const [imageUrl, setImageUrl] = useState(null);
-
-  console.log(data);
-  console.log(errors);
-
-  ////////////// Guy - for future use:///////////////////////
-  // const handleFileUpload = async (event) => {
-  //   const file = await event.target.files[0];
-  //   console.log(file);
-  //   const reader = new FileReader();
-  //   reader.onloadend = () => {
-  //     setImageUrl(reader.result);
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
 
   const handleReset = useCallback(() => {
     setData(initialForm);
     setErrors({});
   }, [initialForm]);
-
-  // const [count, setCount] = useState(0);
 
   const validateProperty = useCallback(
     ({ name, value }) => {

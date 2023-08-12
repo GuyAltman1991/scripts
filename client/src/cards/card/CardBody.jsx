@@ -1,4 +1,4 @@
-import { CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
 
 const CardBody = ({ card }) => {
@@ -20,7 +20,8 @@ const CardBody = ({ card }) => {
           {card.user_id.name.firstName + " " + card.user_id.name.lastName}{" "}
         </Typography>
         <Typography
-          sx={{ mt: -4, fontSize: 14 }}
+          variant="h4"
+          sx={{ mt: -4, fontSize: 28 }}
           color="text.secondary"
           gutterBottom
         >
@@ -88,8 +89,16 @@ const CardBody = ({ card }) => {
             >
               Synopsis:
             </span>{" "}
+            <Typography
+              sx={{
+                maxHeight: "20vh",
+                overflow: "hidden",
+              }}
+            >
+              {" "}
+              {card.synopsis}
+            </Typography>
           </Typography>
-          {card.synopsis}
         </Typography>
       </CardContent>
     </>

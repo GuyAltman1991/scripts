@@ -47,12 +47,6 @@ const Footer = () => {
             icon={<FolderIcon />}
             onClick={() => navigate(ROUTES.MY_SCRIPTS)}
           />
-          <BottomNavigationAction
-            label="My Connections"
-            value="my connections"
-            icon={<SpokeIcon />}
-            onClick={() => navigate(ROUTES.MY_CONNECTIONS)}
-          />
         </BottomNavigation>
       )}
     </Box>

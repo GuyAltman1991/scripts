@@ -9,7 +9,7 @@ const validateCardWithJoi = (card) => {
     synopsis: Joi.string().min(2).required(),
     script_treatment: Joi.string().min(2).allow(""),
     fullScript: Joi.string().min(2).allow(""),
-    anotherScreenwriter: Joi.string().min(2).allow(""),
+    screenwriter: Joi.string().min(2).allow(""),
   });
   return schema.validate(card);
 };
