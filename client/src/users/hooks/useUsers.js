@@ -24,7 +24,7 @@ const useUsers = () => {
   const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();
   useAxios();
-  console.log(user);
+
   const requestStatus = useCallback(
     (loading, errorMessage, users, user = null) => {
       setLoading(loading);
@@ -79,7 +79,7 @@ const useUsers = () => {
     }
   };
 
-  const handleUpdateUser = async (userId, userFromClient) => {
+  const handleUpdateUser = useCallback(async (userId, userFromClient) => {
     try {
       setLoading(true);
       const user = await editUser(userId, userFromClient);
@@ -88,7 +88,7 @@ const useUsers = () => {
     } catch (error) {
       requestStatus(false, error, null);
     }
-  };
+  }, []);
 
   return {
     setLoading,

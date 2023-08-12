@@ -36,7 +36,7 @@ const EditProfile = () => {
     <>
       {user && (
         <Form
-          to={ROUTES.ROOT}
+          to={ROUTES.PROFILE}
           onSubmit={rest.onSubmit}
           onReset={rest.handleReset}
           onChange={rest.validateForm}

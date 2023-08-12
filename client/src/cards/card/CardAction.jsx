@@ -32,23 +32,13 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   },
 }));
 
-export const CardAction = ({ cardUserId, cardId, onDelete }) => {
+export const CardAction = ({ cardUserId, cardId, onDelete, cardLikes }) => {
   const [isDialogOpen, setDialog] = useState(false);
   const { handleGetCards, handleLikeCard, value } = useCards();
   const { cards, card } = value;
   const { user } = useUser();
-  const [isLike, setLike] = useState(() => {
-    // console.log("in" + 1);
-    // console.log("card" + card);
-    // console.log("user" + user);
-    // if (user && card) {
-    //   console.log("in" + 2);
-    //   return card.likes.find((id) => id === user._id);
-    // }
-    // console.log("in" + 1);
-    // return false;
-  });
-
+  const [isLike, setLike] = useState(null);
+  console.log(cardLikes);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -72,7 +62,6 @@ export const CardAction = ({ cardUserId, cardId, onDelete }) => {
   const handleLike = async () => {
     await handleLikeCard(cardId);
     setLike((prev) => !prev);
-    // onLike();
   };
   return (
     <>

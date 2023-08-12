@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { Card, CardMedia, Container } from "@mui/material";
+import { Card, CardMedia, Container, Typography } from "@mui/material";
 import Cards from "../cards/Cards";
 import cards from "../cards/cardsInitialData";
 import useCards from "../cards/hooks/useCards";
 import Error from "../components/Error";
 import Spinner from "../components/Spinner";
+import { useUser } from "../users/providers/UserProvider";
 
 const HomePage = () => {
   const { isLoading, handleGetCards, handleDeleteCard, value } = useCards();
   const { error, cards, filteredCards } = value;
-
+  const { user } = useUser();
   const onDeletCard = async (cardId) => {
     await handleDeleteCard(cardId);
     await handleGetCards();
@@ -18,6 +19,7 @@ const HomePage = () => {
   useEffect(() => {
     handleGetCards();
   }, []);
+
   return (
     <>
       <Container>
@@ -46,10 +48,17 @@ const HomePage = () => {
               <span style={{ fontFamily: "caveat", fontSize: 20 }}>
                 {" "}
                 Lets Write A{" "}
-              </span>
-            </div>
-          </div>
+              </span>{" "}
+            </div>{" "}
+          </div>{" "}
         </Card>
+        <Typography sx={{ backgroundColor: "yellowgreen", mt: 3 }}>
+          <span style={{ fontFamily: "fantasy", fontSize: 20 }}>
+            {user
+              ? "Go to MY SCRIPTS to create your own script"
+              : "Login to create your own script"}
+          </span>
+        </Typography>
         {isLoading && <Spinner />}
         {error && <Error errorMessage={error} />}
         {cards && !cards.length && (
