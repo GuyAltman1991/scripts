@@ -4,9 +4,9 @@ import useUsers from "../hooks/useUsers";
 import useForm from "../../forms/hooks/useForm";
 import initialLoginForm from "../helpers/initialForms/initialLoginForm.js";
 import loginSchema from "../models/joi-schema/loginSchema";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Form from "../../forms/compnents/Form";
 import Input from "../../forms/compnents/Input";
 import jwtDecode from "jwt-decode";
@@ -29,6 +29,7 @@ const LoginPage = () => {
     loginSchema,
     handleLogin
   );
+  const navigate = useNavigate();
 
   if (user) return <Navigate replace to={ROUTES.SCRIPTS} />;
 
@@ -65,6 +66,16 @@ const LoginPage = () => {
           onChange={rest.handleChange}
           data={value.data}
         />
+        <Typography variant="h6" ml={2}>
+          {" "}
+          Not registered yet?{" "}
+          <span
+            style={{ textDecoration: "underline" }}
+            onClick={() => navigate(`${ROUTES.SIGNUP}`)}
+          >
+            SIGN UP
+          </span>
+        </Typography>
       </Form>
     </Container>
   );

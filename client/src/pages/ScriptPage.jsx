@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import ShareToSocialMedia from "../components/ShareToSocialMedia";
+import { capitalizeFirst } from "../cards/helpers/capitalizeFirst";
 
 const url = window.location.href;
 
@@ -17,6 +18,7 @@ const ScriptPage = () => {
   useEffect(() => {
     handleGetCard(cardId);
   }, []);
+
   return (
     <Container>
       {isLoading && <Spinner />}
@@ -27,9 +29,8 @@ const ScriptPage = () => {
       {card && (
         <Box>
           {" "}
-          <Typography variant="h2">{card.title}</Typography>
+          <Typography variant="h2">{capitalizeFirst(card.title)}</Typography>
           <Typography variant="h6"> {card.screenwriter}</Typography>
-          <Typography variant="h6"> {card.anotherScreenwriter}</Typography>
           <Typography sx={{ color: "GrayText" }} variant="h6">
             {card.genre} | {card.length}
           </Typography>{" "}

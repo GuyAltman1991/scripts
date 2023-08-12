@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React from "react";
 import Form from "../../forms/compnents/Form";
 import Input from "../../forms/compnents/Input";
@@ -11,7 +11,7 @@ import "react-phone-number-input/style.css";
 import ReactPhone from "../helpers/reactPhone/ReactPhone";
 import ImageUpload from "../helpers/ImageUpload";
 import { useUser } from "../providers/UserProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
   const { handleSignUp } = useUsers();
@@ -20,6 +20,7 @@ const SignUpPage = () => {
     signupSchema,
     handleSignUp
   );
+  const navigate = useNavigate();
 
   const { user } = useUser();
   if (user) return <Navigate replace to={ROUTES.SCRIPTS} />;
@@ -56,10 +57,6 @@ const SignUpPage = () => {
           onChange={rest.handleChange}
           data={value.data}
         />
-
-        {/* for future use:  */}
-        {/* <ReactPhone onChange={rest.handleChange} data={value.data} /> */}
-
         <Input
           data={value.data}
           error={value.errors.email}
@@ -85,23 +82,27 @@ const SignUpPage = () => {
           onChange={rest.handleChange}
           data={value.data}
         />
-        {/* <Input
+        <Input
           type="text"
           lable="imageUrl"
           name="imageUrl"
+          placeholder={
+            "https://cdn.pixabay.com/photo/2023/05/01/06/55/waterfall-7962263_640.jpg"
+          }
           error={value.errors.imageUrl}
           onChange={rest.handleChange}
           data={value.data}
-        /> */}
-
-        {/* for future use:  */}
-        <ImageUpload
-          onChange={rest.handleChange}
-          data={value.data}
-          name="imageUrl"
-          imageUrl={value.data.imageUrl}
-          error={value.errors.imageUrl}
-        />
+        />{" "}
+        <Typography variant="h6" ml={2}>
+          {" "}
+          Already signed up?{" "}
+          <span
+            style={{ textDecoration: "underline" }}
+            onClick={() => navigate(`${ROUTES.LOGIN}`)}
+          >
+            Login
+          </span>
+        </Typography>
       </Form>
     </Container>
   );
