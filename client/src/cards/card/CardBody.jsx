@@ -91,7 +91,7 @@ const CardBody = ({ card }) => {
             </span>{" "}
             <Typography
               sx={{
-                maxHeight: "20vh",
+                maxHeight: "15vh",
                 overflow: "hidden",
               }}
             >

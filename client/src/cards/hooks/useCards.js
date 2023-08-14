@@ -153,6 +153,7 @@ const useCards = () => {
 
   return {
     setLoading,
+    setFilter,
     isLike,
     value,
     handleGetCards,

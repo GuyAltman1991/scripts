@@ -6,6 +6,7 @@ import useCards from "../cards/hooks/useCards";
 import Error from "../components/Error";
 import Spinner from "../components/Spinner";
 import { useUser } from "../users/providers/UserProvider";
+import ScriptsPage from "./ScriptsPage";
 
 const HomePage = () => {
   const { isLoading, handleGetCards, handleDeleteCard, value } = useCards();
@@ -65,7 +66,8 @@ const HomePage = () => {
           <p> there are no cards in the database that match the request</p>
         )}
         {cards && filteredCards && !!cards.length && (
-          <Cards onDelete={onDeletCard} cards={filteredCards} />
+          // <Cards onDelete={onDeletCard} cards={filteredCards} />
+          <ScriptsPage />
         )}
       </Container>
     </>
