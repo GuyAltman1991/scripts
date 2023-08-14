@@ -5,7 +5,7 @@ const config = require("config");
 const NAME = config.get("DB_NAME");
 const PASSWORD = config.get("DB_PASSWORD");
 
-// does not eork with variables, but when you put the actual userName and password, its working//
+// does not work with variables, but when you put the actual userName and password, its working//
 
 mongoose
   .connect(

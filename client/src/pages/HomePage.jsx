@@ -56,7 +56,7 @@ const HomePage = () => {
         <Typography sx={{ backgroundColor: "yellowgreen", mt: 3 }}>
           <span style={{ fontFamily: "fantasy", fontSize: 20 }}>
             {user
-              ? "Go to MY SCRIPTS to create your own script"
+              ? "Go to MY SCRIPTS to create your own script, Or choose a category and read excellent scripts by excellent writers"
               : "Login to create your own script"}
           </span>
         </Typography>
