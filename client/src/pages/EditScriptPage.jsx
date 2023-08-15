@@ -16,6 +16,7 @@ import Error from "../components/Error";
 import useUsers from "../users/hooks/useUsers";
 import { dark } from "@mui/material/styles/createPalette";
 import axios from "axios";
+import SelectOption from "../forms/compnents/SelectOption";
 
 const EditScriptPage = () => {
   const {
@@ -52,6 +53,9 @@ const EditScriptPage = () => {
     handleGetCard(cardId);
   }, []);
 
+  const genreOptions = ["drama", "comedy", "horor", "action", "musical"];
+  const lengthOptions = ["long", "short", "series"];
+
   if (!user && !card) return <Navigate replace to={ROUTES.ROOT} />;
 
   return (
@@ -82,21 +86,21 @@ const EditScriptPage = () => {
                 required={true}
                 type="text"
               />
-              {/* <SelectOption
-        lable={"genre"}
-        options={movieCategories}
-        onChange={rest.handleChange}
-        data={value.data}
-        name="genre"
-      />{" "}
-      <SelectOption
-        lable={"Length"}
-        options={lengthOptions}
-        name="length"
-        onChange={rest.handleChange}
-        data={value.data}
-      /> */}
-              <Input
+              <SelectOption
+                data={value.data}
+                options={genreOptions}
+                name={"genre"}
+                lable={"genre"}
+                onChange={rest.handleChange}
+              />
+              <SelectOption
+                data={value.data}
+                options={lengthOptions}
+                lable={"length"}
+                name={"length"}
+                onChange={rest.handleChange}
+              />
+              {/* <Input
                 data={value.data}
                 lable="genre"
                 name="genre"
@@ -109,7 +113,7 @@ const EditScriptPage = () => {
                 name="length"
                 onChange={rest.handleChange}
                 required={true}
-              />
+              /> */}
               <Input
                 data={value.data}
                 lable="language"

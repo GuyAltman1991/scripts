@@ -22,7 +22,8 @@ const CreateScriptPage = () => {
   );
 
   if (!user) return <Navigate replace to={ROUTES.SCRIPTS} />;
-
+  const genreOptions = ["drama", "comedy", "horor", "action", "musical"];
+  const lengthOptions = ["long", "short", "series"];
   return (
     <Container>
       <Box sx={{ mt: -2 }}>
@@ -44,21 +45,19 @@ const CreateScriptPage = () => {
             required={true}
             type="text"
           />
-          <Input
+          <SelectOption
             data={value.data}
-            lable="genre"
-            name="genre"
-            placeholder={"e.g : drama/comedy/horor"}
+            options={genreOptions}
+            name={"genre"}
+            lable={"genre"}
             onChange={rest.handleChange}
-            required={true}
           />
-          <Input
+          <SelectOption
             data={value.data}
-            lable="length"
-            name="length"
-            placeholder={"e.g : long/short/series"}
+            options={lengthOptions}
+            lable={"length"}
+            name={"length"}
             onChange={rest.handleChange}
-            required={true}
           />
           <Input
             data={value.data}
