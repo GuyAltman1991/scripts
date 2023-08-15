@@ -28,10 +28,8 @@ const AboutPage = () => {
             If you are a producer:
             <Divider />
             1. Register on the website, <br />
-            2. Scroll through the scripts (there is an option to find out the
-            genre in the search) <br />
-            3. if you are interested in collaboration, you can contact the
-            screenwriter
+            2. Scroll through the scripts, <br />
+            3. if you are interested in collaboration, contact the screenwriter
           </Typography>{" "}
         </ListItem>
       </Stack>

@@ -7,7 +7,7 @@ import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useCards from "../cards/hooks/useCards";
 
-const ScriptsPage = ({ onDelete }) => {
+const ScriptsPage = () => {
   const { value, handleGetCards, handleDeleteCard, setFilter } = useCards();
   const { isLoading, error, cards, filteredCards } = value;
 
@@ -41,6 +41,12 @@ const ScriptsPage = ({ onDelete }) => {
             },
           }}
         >
+          <Card onClick={() => handleGetCards()}>
+            {" "}
+            <Typography sx={{ fontSize: 25, mt: 1 }} color="text.secondary">
+              ALL
+            </Typography>
+          </Card>
           <Card onClick={() => handleChooseCategory("drama")}>
             {" "}
             <Typography sx={{ fontSize: 25, mt: 1 }} color="text.secondary">

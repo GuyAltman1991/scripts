@@ -1,4 +1,10 @@
-import { Box, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Box,
+  CardContent,
+  CardMedia,
+  Container,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 const CardBody = ({ card }) => {
@@ -18,10 +24,10 @@ const CardBody = ({ card }) => {
             {" "}
           </CardMedia>
           {card.user_id.name.firstName + " " + card.user_id.name.lastName}{" "}
-        </Typography>
+        </Typography>{" "}
         <Typography
           variant="h4"
-          sx={{ mt: -4, fontSize: 28 }}
+          sx={{ mt: -2, fontSize: 28 }}
           color="text.secondary"
           gutterBottom
         >
