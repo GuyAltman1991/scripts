@@ -4,6 +4,10 @@ A place to publishe and sale movies scripts
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Requirements
+
+MongoDB local compass
+
 ## Available Scripts
 
 In the project directory, run:
