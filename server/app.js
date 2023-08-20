@@ -21,32 +21,6 @@ app.use(express.json());
 app.use(express.text());
 app.use(router);
 
-// login with google //
-// app.use(cookieParser());
-// dotEnv.config();
-
-// const client = new OAuth2Client(process.env.REACT_APP_GOOGLE_ID);
-
-// const users = [];
-
-// const upsert = (array, item) => {
-//   const i = array.findIndex((_item) => _item.email === item.email);
-//   if (i > -1) array[i] = item;
-//   else array.push(item);
-// };
-
-// app.post("/api-google-login", async (req, res) => {
-//   const { token } = req.body;
-//   const ticket = await client.verifyIdToken({
-//     idToken: token,
-//     audience: process.env.CLIENT_ID,
-//   });
-//   const { name, email, picture } = ticket.getPayLoad();
-//   upsert(users, { name, email, picture });
-//   res.status(201);
-//   res.json({ name, email, picture });
-// });
-
 // ========== ///
 app.set("view engine", "ejs");
 app.use((err, req, res, next) => {

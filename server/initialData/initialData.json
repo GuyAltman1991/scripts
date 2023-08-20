@@ -7,7 +7,8 @@
       "language": "english",
       "synopsis": "this is the synopsis of the first script",
       "script_treatment": "this is the script_treatment of the first script",
-      "fullScript": "this is the fullScript of the first script"
+      "fullScript": "this is the fullScript of the first script",
+      "user_id": 1001
     },
     {
       "title": "second card",

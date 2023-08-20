@@ -1,8 +1,5 @@
 import {
-  Box,
   Container,
-  Hidden,
-  Paper,
   SpeedDial,
   SpeedDialAction,
   SpeedDialIcon,
@@ -10,10 +7,6 @@ import {
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
 import AddIcon from "@mui/icons-material/Add";
 import { Navigate, useNavigate } from "react-router-dom";
 import useCards from "../cards/hooks/useCards";
@@ -36,12 +29,7 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   },
 }));
 
-const actions = [
-  { icon: <AddIcon />, name: "Add project" },
-  // { icon: <SaveIcon />, name: "Save" },
-  // { icon: <PrintIcon />, name: "Print" },
-  // { icon: <ShareIcon />, name: "Share" },
-];
+const actions = [{ icon: <AddIcon />, name: "Add project" }];
 
 const MyScriptsPage = () => {
   const [direction, setDirection] = React.useState("up");

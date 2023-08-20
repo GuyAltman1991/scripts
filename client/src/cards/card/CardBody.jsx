@@ -1,10 +1,4 @@
-import {
-  Box,
-  CardContent,
-  CardMedia,
-  Container,
-  Typography,
-} from "@mui/material";
+import { CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
 
 const CardBody = ({ card }) => {

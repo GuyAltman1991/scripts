@@ -1,23 +1,32 @@
-# scripts
+# Movie Scripts Marketplace
 
-A place to publishe and sale movies scripts
+Welcome to the Movie Scripts Marketplace repository. This project is dedicated to the publication and sale of movie scripts, providing a platform for writers and enthusiasts to engage with compelling screenplays.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project has been initiated using [Create React App](https://github.com/facebook/create-react-app).
 
 ## Requirements
 
-MongoDB local compass
+- MongoDB (local installation)
+- Compass (MongoDB GUI)
 
-## Available Scripts
+## Getting Started
 
-In the project directory, run:
+Follow these steps to get the project up and running on your local machine:
 
-### scripts/server/ `npm run dev`
+### Server
 
-### scripts/client/ `npm start`
+1. Navigate to the `scripts/server/` directory.
+2. Run `npm install` to install the necessary dependencies.
+3. Execute `npm run dev` to start the server.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Client
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Go to the `scripts/client/` directory.
+2. Run `npm install` to install the required packages.
+3. Launch the application by running `npm start`.
+
+The application will be accessible in your browser at [http://localhost:3000](http://localhost:3000) while in development mode.
+
+Any changes you make to the source code will trigger an automatic page reload, and potential linting errors will be displayed in the console.
+
+Thank you for your interest in our Movie Scripts Marketplace. We hope this platform serves as a valuable resource for scriptwriters and movie enthusiasts alike. If you have any questions or feedback, please don't hesitate to reach out.

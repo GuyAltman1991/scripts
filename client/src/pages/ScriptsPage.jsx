@@ -1,7 +1,6 @@
-import { Box, Card, Container, Paper, Typography } from "@mui/material";
+import { Box, Card, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Cards from "../cards/Cards";
-// import initialDataCards from "../cards/cardsData";
 
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
@@ -14,6 +13,8 @@ const ScriptsPage = () => {
   useEffect(() => {
     handleGetCards();
   }, []);
+
+  console.log(cards);
 
   const onDeleteCard = async (cardId) => {
     await handleDeleteCard(cardId);
@@ -84,8 +85,8 @@ const ScriptsPage = () => {
         {cards && !cards.length && (
           <p> there are no cards in the database that match the request</p>
         )}
-        {cards && filteredCards && !!cards.length && (
-          <Cards cards={filteredCards} onDelete={onDeleteCard} />
+        {!isLoading && cards && filteredCards && !!cards.length && (
+          <Cards onDelete={onDeleteCard} cards={filteredCards} />
         )}
       </Container>
     </>

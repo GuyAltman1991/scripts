@@ -26,7 +26,6 @@ const useCards = () => {
   const [filteredCards, setFilter] = useState(null);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  // const snack = useSnackbar();
   useAxios();
 
   useEffect(() => {
@@ -61,7 +60,6 @@ const useCards = () => {
     try {
       setLoading(true);
       const cards = await getCards();
-
       requestStatus(false, null, cards);
     } catch (error) {
       requestStatus(false, error, null);
@@ -119,7 +117,6 @@ const useCards = () => {
       setLoading(true);
       const card = await editCard(cardId, cardFromClient);
       requestStatus(false, null, null, card);
-      //  snack("script has been update");
       navigate(ROUTES.MY_SCRIPTS);
     } catch (error) {
       requestStatus(false, error, null);
