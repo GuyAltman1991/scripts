@@ -14,8 +14,6 @@ const ScriptsPage = () => {
     handleGetCards();
   }, []);
 
-  console.log(cards);
-
   const onDeleteCard = async (cardId) => {
     await handleDeleteCard(cardId);
     await handleGetCards();
