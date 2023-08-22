@@ -28,8 +28,7 @@ yarn-error.log*
 
 /project_helpers
 
-server/config/production.json
-server/config/development.json
+server/config
 # Node rules:
 ## Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
