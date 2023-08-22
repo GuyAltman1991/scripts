@@ -1,5 +1,5 @@
 // const ENVIRONMENT = process.env.ENVIRONMENT || "dev";
-const ENVIRONMENT = "prod";
+const ENVIRONMENT = process.env.ENVIRONMENT || "prod";
 
 const connectToDb = () => {
   if (ENVIRONMENT === "dev") require("./dataBases/connectToMongoDBlocally");

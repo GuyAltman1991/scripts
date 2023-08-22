@@ -7,7 +7,7 @@ const PASSWORD = config.get("DB_PASSWORD");
 
 mongoose
   .connect(
-    `mongodb+srv://guyaltman91:kW9UZisGUQxfkb0V@cluster0.fzljkal.mongodb.net/?retryWrites=true&w=majority`
+    `mongodb+srv://${NAME}:${PASSWORD}@cluster0.fzljkal.mongodb.net/?retryWrites=true&w=majority`
   )
 
   .then(() => console.log(chalk.magentaBright("connected to MongoDB Atlas!")))

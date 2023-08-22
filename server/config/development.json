@@ -2,8 +2,8 @@
   "NODE_ENV": "development",
   "PORT": 8181,
   "TOKEN_GENERATOR": "jwt",
-  "DB_NAME": null,
-  "DB_PASSWORD": null,
+  "DB_NAME": "guyaltman91",
+  "DB_PASSWORD": "kW9UZisGUQxfkb0V",
   "LOGGER": "morgan",
   "DB": "MONGODB"
 }
