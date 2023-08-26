@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useUser } from "../users/providers/UserProvider";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import ROUTES from "../routes/routesModel";
 import useCards from "../cards/hooks/useCards";
 import useForm from "../forms/hooks/useForm";
@@ -14,7 +14,6 @@ import Input from "../forms/compnents/Input";
 import Spinner from "../components/Spinner";
 import Error from "../components/Error";
 import useUsers from "../users/hooks/useUsers";
-import { dark } from "@mui/material/styles/createPalette";
 import axios from "axios";
 import SelectOption from "../forms/compnents/SelectOption";
 
@@ -31,7 +30,6 @@ const EditScriptPage = () => {
   const { handleGetUser, isLoading: userIsLoading } = useUsers();
   const { cardId } = useParams();
   const { user } = useUser();
-  const navigate = useNavigate();
 
   const { value, ...rest } = useForm(
     initialScriptForm,

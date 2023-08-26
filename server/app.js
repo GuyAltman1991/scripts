@@ -23,6 +23,7 @@ app.use(router);
 
 // ========== ///
 app.set("view engine", "ejs");
+
 app.use((err, req, res, next) => {
   handleError(res, 500, err.message);
 });

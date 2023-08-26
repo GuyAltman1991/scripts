@@ -11,8 +11,6 @@ import { useUser } from "../users/providers/UserProvider";
 import useUsers from "../users/hooks/useUsers";
 
 const Dashboard = ({ src }) => {
-  const [direction, setDirection] = React.useState("down");
-  const [hidden, setHidden] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { handleGetUser } = useUsers();
 

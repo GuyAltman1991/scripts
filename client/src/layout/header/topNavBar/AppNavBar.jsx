@@ -5,7 +5,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ROUTES from "../../../routes/routesModel";
 import NavItem from "../../../routes/components/NavItem";
-import { Link } from "@mui/material";
 import NavBarLink from "../../../routes/components/NavBarLink";
 import RightNavBar from "./right-navigation/RightNavBar";
 import { useUser } from "../../../users/providers/UserProvider";

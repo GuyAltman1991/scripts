@@ -13,7 +13,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useAxios from "../../hooks/useAxios";
 import { useUser } from "../../users/providers/UserProvider";
-import { useSnackbar } from "../../providers/SnackbarProvider";
 
 const useCards = () => {
   const { user } = useUser();
