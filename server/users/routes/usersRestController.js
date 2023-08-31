@@ -73,6 +73,7 @@ router.get("/:id", auth, async (req, res) => {
     let user = await getUser(userId);
     const filterUser = {
       name: { firstName: user.name.firstName, lastName: user.name.lastName },
+      isActive: user.isActive,
       isAdmin: user.isAdmin,
       isBusiness: user.isBusiness,
       _id: user._id,
@@ -88,11 +89,11 @@ router.get("/:id", auth, async (req, res) => {
 
 router.put("/:id", auth, async (req, res) => {
   try {
-    const { _id } = req.user;
+    const { _id, isAdmin } = req.user;
     const userId = req.params.id;
     let user = req.body;
 
-    if (_id !== userId)
+    if (_id !== userId && !isAdmin)
       throw new Error("only the user or admin can update the user details");
     user = normlizeUser(user);
 
@@ -112,8 +113,6 @@ router.delete("/:id", auth, async (req, res) => {
       throw new Error(
         "only the user who create the profile or an admin user can delete the user"
       );
-
-    // await deleteAllUserCards(userId);
 
     const user = await deleteUser(userId);
     return res.send(user);

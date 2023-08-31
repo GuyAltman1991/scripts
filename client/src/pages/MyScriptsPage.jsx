@@ -39,6 +39,7 @@ const MyScriptsPage = () => {
   const navigate = useNavigate();
   const { handleGetCards, handleGetMyCards, handleDeleteCard, value } =
     useCards();
+  console.log(user);
 
   const { isLoading, error, cards, filteredCards } = value;
 

@@ -9,8 +9,9 @@ const getCards = async () => {
     try {
       const cards = await Card.find().populate({
         path: "user_id",
-        select: "name imageUrl email",
+        select: "name imageUrl email isActive",
       });
+
       return Promise.resolve(cards);
     } catch (error) {
       return Promise.reject(error);

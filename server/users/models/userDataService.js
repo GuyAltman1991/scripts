@@ -43,7 +43,11 @@ const getUsers = async () => {
   if (DB === "MONGODB") {
     try {
       const users = User.find({}, { password: 0, __v: 0 });
+      // .where({
+      //   isActive: true,
+      // });
       if (!users) throw new Error("there are no users in the database!");
+
       return Promise.resolve(users);
     } catch (error) {
       return Promise.reject(error);
@@ -84,10 +88,14 @@ const updateUser = async (userId, normlizeUser) => {
 const deleteUser = async (userId) => {
   if (DB === "MONGODB") {
     try {
-      const user = await User.findByIdAndDelete(userId).select({
-        password: 0,
-        __v: 0,
-      });
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { isActive: false },
+        {
+          new: true,
+        }
+      ).select(["-password", "-__v"]);
+
       return Promise.resolve(user);
     } catch (error) {
       return Promise.reject(error);

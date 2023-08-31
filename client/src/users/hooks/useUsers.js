@@ -6,7 +6,6 @@ import {
   editUser,
   getUserFromServer,
   login,
-  loginWithGoogle,
   signup,
 } from "../services/usersApiService";
 import {
@@ -24,7 +23,6 @@ const useUsers = () => {
   const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();
   useAxios();
-
   const requestStatus = useCallback(
     (loading, errorMessage, users, user = null) => {
       setLoading(loading);

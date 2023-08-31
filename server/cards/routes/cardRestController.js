@@ -47,6 +47,7 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const cards = await getCards();
+
     return res.send(cards);
   } catch (error) {
     const { status } = error;

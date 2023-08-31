@@ -13,10 +13,11 @@ function App() {
         <ThemeProvider>
           <SnackbarProvider>
             <UserProvider>
+              {" "}
               <Layout>
                 {" "}
-                <Router />
-              </Layout>
+                <Router />{" "}
+              </Layout>{" "}
             </UserProvider>
           </SnackbarProvider>
         </ThemeProvider>

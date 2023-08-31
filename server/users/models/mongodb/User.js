@@ -44,6 +44,7 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     lowercase: true,
   },
+  isActive: { type: Boolean, default: true },
   isAdmin: { type: Boolean, default: false },
   isBusiness: { type: Boolean, default: false },
   createdAt: {
