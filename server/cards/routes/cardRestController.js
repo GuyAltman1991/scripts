@@ -46,9 +46,10 @@ router.get("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const cards = await getCards();
+    let cards = await getCards();
+    const activCards = cards.filter((cards) => cards.user_id.isActive === true);
 
-    return res.send(cards);
+    return res.send(activCards);
   } catch (error) {
     const { status } = error;
     return handleError(res, status || 500, error.message);
