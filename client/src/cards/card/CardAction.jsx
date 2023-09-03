@@ -82,10 +82,6 @@ export const CardAction = ({ cardUserId, cardId, onDelete, cardLikes }) => {
           />
         </IconButton>
 
-        <IconButton aria-label="add to worth reading folder">
-          <FolderIcon />
-        </IconButton>
-
         {user && (user.isAdmin || user._id === cardUserId) && (
           <IconButton
             aria-label="delete project"
