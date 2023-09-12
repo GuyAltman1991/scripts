@@ -13,6 +13,7 @@ import CreateScriptPage from "../pages/CreateScriptPage";
 import ScriptPage from "../pages/ScriptPage";
 import ProfilePage from "../users/pages/ProfilePage";
 import EditScriptPage from "../pages/EditScriptPage";
+import ManageUsers from "../users/pages/ManageUsers";
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
       <Route path={ROUTES.SCRIPTS} element={<ScriptsPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignUpPage />} />
+      <Route path={ROUTES.MANAGE_USERS} element={<ManageUsers />} />
       <Route path={`${ROUTES.PROFILE}/:userId`} element={<ProfilePage />} />
       <Route path={ROUTES.FAVORITES} element={<FavoritesPage />} />
       <Route path={ROUTES.WORTH_READING} element={<WorthReadingPage />} />

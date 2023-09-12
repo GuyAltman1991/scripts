@@ -5,6 +5,7 @@ const ROUTES = {
   SIGNUP: "/signup",
   UPLOADIMAGE: "upload_image",
   PROFILE: "/profile",
+  MANAGE_USERS: "/manage_users",
   SCRIPTS: "/scripts",
   FAVORITES: "/favorites",
   WORTH_READING: "/worth_reading",

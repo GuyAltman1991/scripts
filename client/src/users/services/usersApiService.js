@@ -29,6 +29,15 @@ export const getUserFromServer = async (userId) => {
   }
 };
 
+export const getUsers = async () => {
+  try {
+    const { data } = await axios.get(`${apiUrl}/users`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+
 export const editUser = async (userId, userFromClient) => {
   try {
     const { data } = await axios.put(

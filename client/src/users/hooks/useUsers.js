@@ -5,6 +5,7 @@ import useAxios from "../../hooks/useAxios";
 import {
   editUser,
   getUserFromServer,
+  getUsers,
   login,
   signup,
 } from "../services/usersApiService";
@@ -14,7 +15,6 @@ import {
 } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
 import normlizeUser from "../helpers/normlizeUser";
-import normlizeUserFromGoogle from "../helpers/normlizeUserFromGoogle";
 
 const useUsers = () => {
   const [users, setUsers] = useState(null);
@@ -68,14 +68,21 @@ const useUsers = () => {
       const userFromLocalStorage = await getUser();
       const userId = userFromLocalStorage._id;
       const user = await getUserFromServer(userId);
-
       requestStatus(false, null, null, user);
-
       return user;
     } catch (error) {
       requestStatus(false, error, null);
     }
   };
+
+  const handleGetUsers = useCallback(async () => {
+    try {
+      const users = await getUsers();
+      requestStatus(false, null, users);
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  }, []);
 
   const handleUpdateUser = useCallback(async (userId, userFromClient) => {
     try {
@@ -98,6 +105,7 @@ const useUsers = () => {
     handleGetUser,
     handleSignUp,
     handleUpdateUser,
+    handleGetUsers,
   };
 };
 
